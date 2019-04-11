@@ -6,3 +6,5 @@ Remember:
 - Commit
 - Push
 - Pull Request
+
+- Dustin Payne
