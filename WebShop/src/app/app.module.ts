@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {environment} from '../environments/environment';
 import { LoginComponent } from './login/login.component';
+import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    BsNavbarComponent
   ],
   imports: [
     BrowserModule,
