@@ -4,8 +4,8 @@ import { AngularFireModule} from '@angular/fire';
 import { AngularFireDatabaseModule} from '@angular/fire/database';
 import { AngularFireAuthModule} from '@angular/fire/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
 import {environment} from '../environments/environment';
 import { LoginComponent } from './login/login.component';
@@ -28,7 +28,11 @@ import { AuthGuardService as AuthGuard } from './auth-guard.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AppRoutingModule,
+    RouterModule.forRoot([
+      {path:'shop', component: ShopComponent},
+      {path:'shopping-cart', component: ShoppingCartComponent},
+      {path:'login', component: LoginComponent}
+    ]),
     NgbModule.forRoot()
     ],
   providers: [
