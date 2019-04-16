@@ -4,9 +4,7 @@ import { ShopComponent } from './shop/shop.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
 
-const routes: Routes = [{path:'shop', component: ShopComponent},
-                        {path:'shopping-cart', component: ShoppingCartComponent},
-                        {path:'login', component: LoginComponent}];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
