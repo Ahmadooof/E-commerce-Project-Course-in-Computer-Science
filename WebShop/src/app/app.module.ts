@@ -13,7 +13,9 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { ShopComponent } from './shop/shop.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AuthService } from './auth.service';
-import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { AuthGuardService as AuthGuard, AuthGuardService } from './auth-guard.service';
+import { HomeComponent } from './home/home.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { AuthGuardService as AuthGuard } from './auth-guard.service';
     LoginComponent,
     BsNavbarComponent,
     ShopComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    HomeComponent,
+    MyOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +33,11 @@ import { AuthGuardService as AuthGuard } from './auth-guard.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
+      {path:'', component: HomeComponent}, 
       {path:'shop', component: ShopComponent},
       {path:'shopping-cart', component: ShoppingCartComponent},
-      {path:'login', component: LoginComponent}
+      {path:'login', component: LoginComponent},
+      {path:'my-orders', component: MyOrdersComponent, canActivate: [AuthGuard]}
     ]),
     NgbModule.forRoot()
     ],
