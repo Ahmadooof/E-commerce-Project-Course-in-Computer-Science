@@ -13,4 +13,3 @@ export class BsNavbarComponent {
     this.auth.logout();
   }
 }
- 
