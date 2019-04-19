@@ -20,6 +20,8 @@ import { AdminCoursesComponent } from './admin/admin-courses/admin-courses.compo
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminAuthGuardService as AdminAuthGuard } from './admin-auth-guard.service';
 import { UserService } from './user.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import {CategoryService} from './category.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { UserService } from './user.service';
     HomeComponent,
     MyOrdersComponent,
     AdminCoursesComponent,
-    AdminOrdersComponent
+    AdminOrdersComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -39,15 +42,16 @@ import { UserService } from './user.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      {path:'', component: HomeComponent}, 
-      {path:'shop', component: ShopComponent},
-      {path:'shopping-cart', component: ShoppingCartComponent},
-      {path:'login', component: LoginComponent},
-      {path:'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
+      {path: '', component: HomeComponent},
+      {path: 'shop', component: ShopComponent},
+      {path: 'shopping-cart', component: ShoppingCartComponent},
+      {path: 'login', component: LoginComponent},
+      {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
 
-      {path:'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
-      {path:'admin/courses', component: AdminCoursesComponent, canActivate: [AuthGuard]},
+      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
+      {path: 'admin/courses', component: AdminCoursesComponent, canActivate: [AuthGuard]},
 
+      {path: 'admin/courses/new', component:  ProductFormComponent, canActivate: [AuthGuard]},
     ]),
     NgbModule.forRoot()
     ],
@@ -56,6 +60,7 @@ import { UserService } from './user.service';
     AuthGuard,
     AdminAuthGuard,
     UserService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
