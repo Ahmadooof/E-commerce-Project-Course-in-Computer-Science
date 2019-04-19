@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/take';
 import {CategoryService} from '../../category.service';
 import {ProductService} from '../../product.service';
@@ -17,13 +17,17 @@ categories$;
     this.categories$ = categoryService.getCategories();
   }
 */
-  constructor(categoryService: CategoryService, private productService: ProductService) {
+  constructor(
+    private router: Router,
+    private categoryService: CategoryService, 
+    private productService: ProductService) {
     this.categories$ = categoryService.getAll();
   }
 
 
   save(product) {
     this.productService.create(product);
+    this.router.navigate(['/admin/courses']);
   }
 
   ngOnInit() {
