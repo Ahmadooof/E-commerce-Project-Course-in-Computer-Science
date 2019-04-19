@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import 'rxjs/add/operator/take';
 import {CategoryService} from '../../category.service';
+import {ProductService} from '../../product.service';
 
 
 @Component({
@@ -16,11 +17,14 @@ categories$;
     this.categories$ = categoryService.getCategories();
   }
 */
-  constructor(categoryService: CategoryService){
+  constructor(categoryService: CategoryService, private productService: ProductService) {
     this.categories$ = categoryService.getAll();
   }
 
 
+  save(product) {
+    this.productService.create(product);
+  }
 
   ngOnInit() {
   }
