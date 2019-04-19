@@ -14,7 +14,7 @@ export class UserService {
 
   // location of this object in database
   save(user: firebase.User){
-    this.db.object('/users'+user.uid).update({
+    this.db.object('/users/' + user.uid).update({
       // this is the same name which we see in the navBar
       name: user.displayName,
       email: user.email
