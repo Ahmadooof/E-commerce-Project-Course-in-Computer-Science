@@ -55,9 +55,11 @@ import {ProductService} from './product.service';
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
-      {path: 'admin/courses', component: AdminCoursesComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/courses/new', component:  ProductFormComponent, canActivate: [AuthGuard]},
+      {path: 'admin/courses/:id', component:  ProductFormComponent, canActivate: [AuthGuard]},
+      {path: 'admin/courses', component: AdminCoursesComponent, canActivate: [AuthGuard]}
+
     ]),
     NgbModule.forRoot()
     ],
