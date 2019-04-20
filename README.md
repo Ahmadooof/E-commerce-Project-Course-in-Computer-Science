@@ -9,10 +9,10 @@ Remember:
 
 
 --------------------------------------
-- Emails:
+Emails:
 - johnisyouraverageconsumer@gmail.com
 - johannaisyouraveragetutor@gmail.com
 
-- Passoword (same for both): 
+Passoword (same for both): 
 - Long1234Password
 --------------------------------------
