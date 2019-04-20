@@ -1,4 +1,4 @@
-    <p>
+<p>
     <a routerLink="/admin/courses/new" class="btn btn-primary">New Product</a>
 </p>
 
@@ -15,7 +15,9 @@
             <td>{{c.title}}</td>
             <td>{{c.price}}</td>
             <td>
-                <a [routerLink] = "['/admin/products/', c.$key]">Edit</a>
+             <!--  <a [routerLink] = "['/admin/products/', c.key]">Edit</a>-->
+             <button type="button" class="btn btn-primary" 
+                (click)="OnEdit(c.key)">Edit</button>
             </td>
         </tr>
     </tbody>
