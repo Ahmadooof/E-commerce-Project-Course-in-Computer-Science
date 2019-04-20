@@ -7,4 +7,12 @@ Remember:
 - Push
 - Pull Request
 
-- Dustin Payne
+
+--------------------------------------
+- Emails:
+- johnisyouraverageconsumer@gmail.com
+- johannaisyouraveragetutor@gmail.com
+
+- Passoword (same for both): 
+- Long1234Password
+--------------------------------------
