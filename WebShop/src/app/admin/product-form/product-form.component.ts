@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take';
 import {CategoryService} from '../../category.service';
 import {ProductService} from '../../product.service';
-
 
 @Component({
   selector: 'app-product-form',
@@ -12,21 +11,53 @@ import {ProductService} from '../../product.service';
 })
 export class ProductFormComponent implements OnInit {
 categories$;
-/*
-  constructor(categoryService: CategoryService) {
-    this.categories$ = categoryService.getCategories();
-  }
-*/
+course = {};
+id;
+
   constructor(
     private router: Router,
+    private route:ActivatedRoute,
     private categoryService: CategoryService, 
     private productService: ProductService) {
     this.categories$ = categoryService.getAll();
+
+    //read address, get id
+    this.id = this.route.snapshot.paramMap.get('id');
+  /**
+   * OBS
+   * This is the part that does not retrieve info from db
+   */
+    if(this.id){
+      this.productService.get(this.id)
+        .snapshotChanges()
+        .pipe()
+        .take(1)
+        .subscribe(p => this.course = p);      
+    }
   }
 
-
+  /*
+  If we got an ID from constructor, then is not create new course
+  and it redirects to function update. 
+  */
   save(product) {
-    this.productService.create(product);
+    if(this.id){
+      this.productService.updateProduct(this.id, product);
+    } else {
+      this.productService.create(product);
+    }
+    
+    this.router.navigate(['/admin/courses']);
+  }
+
+  delete() {
+    if (!confirm('Do you want to delete this course?')) return;
+    this.productService.deleteProduct(this.id);
+    this.router.navigate(['/admin/courses']);
+  }
+
+  back(){
+    if (!confirm('Go back to courses without saving?')) return;
     this.router.navigate(['/admin/courses']);
   }
 
