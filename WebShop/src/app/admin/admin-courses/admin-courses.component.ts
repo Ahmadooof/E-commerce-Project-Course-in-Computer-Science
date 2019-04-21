@@ -21,6 +21,10 @@ export class AdminCoursesComponent implements OnInit {
    }
 
    Cuack(foo: string){console.log('cuak' + foo)}
+
+   filter(query: string){ 
+     console.log(query);
+   }
  
   ngOnInit() {
   }
