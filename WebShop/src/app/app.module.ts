@@ -52,13 +52,32 @@ import { ProductService } from './product.service';
       {path: 'shop', component: ShopComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
-
-      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]},
-
-      {path: 'admin/courses/new', component:  ProductFormComponent, canActivate: [AuthGuard]},
-      {path: 'admin/courses/:id', component:  ProductFormComponent, canActivate: [AuthGuard]},
-      {path: 'admin/courses', component: AdminCoursesComponent, canActivate: [AuthGuard]}
+      
+      {
+        path: 'my/orders', 
+        component: MyOrdersComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      },
+      {
+        path: 'admin/orders', 
+        component: AdminOrdersComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      },
+      {
+        path: 'admin/courses/new', 
+        component:  ProductFormComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      },
+      {
+        path: 'admin/courses/:id', 
+        component:  ProductFormComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      },
+      {
+        path: 'admin/courses', 
+        component: AdminCoursesComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      }
 
     ]),
     NgbModule.forRoot()
