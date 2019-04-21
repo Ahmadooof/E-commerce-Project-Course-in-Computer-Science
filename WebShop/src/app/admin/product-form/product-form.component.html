@@ -22,7 +22,7 @@
       <div class="form-group">
         <label for="price">Price</label>
         <input #price="ngModel" 
-            ngModel name="price" 
+            [(ngModel)]="course.price" name="price" 
             id="price" 
             type="number" 
             class="form-control" 
@@ -33,11 +33,11 @@
           <div *ngIf="price.errors.min">The price cannot be negative.</div>
         </div>
       </div>
-      <!--CATS-->
+      <!--CATEGORY-->
       <div class="form-group">
         <label for="category">Category</label>
         <select #category= "ngModel" 
-            ngModel name="category" 
+            [(ngModel)]="course.category" name="category" 
             id="category"  
             class="form-control" required>
           <option value=""></option>
@@ -53,7 +53,7 @@
       <!--IMG-->
         <label for="imageUrl">Image URL</label>
         <input #imgUrl = "ngModel" 
-            ngModel name="imageUrl" 
+            [(ngModel)]="course.imageUrl" name="imageUrl" 
             id="imageUrl" 
             type="text" 
             class="form-control" required url>
@@ -72,7 +72,7 @@
 
   <div class="col-md-6"> <!-- This column is the right half of the screen-->
     <div class="card" style="width: 18rem;">
-        <img [src]="imgUrl.value" class="card-img-top">
+        <img [src]="imgUrl.value" class="card-img-top" *ngIf="course.imageUrl">
         <div class="card-body">
           <h5 class="card-title">{{title.value}}</h5>
           <p class="card-text">{{price.value | currency:'SEK':true}}</p>
