@@ -4,7 +4,6 @@ import { AuthService } from './auth.service';
 import { CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { AngularFireObject } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
