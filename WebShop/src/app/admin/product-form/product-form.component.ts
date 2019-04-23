@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductFormComponent implements OnInit {
 categories$;
-course:{};
+course = {};
 id;
 
   constructor(
@@ -22,7 +22,7 @@ id;
     private productService: ProductService) {
     this.categories$ = categoryService.getAll();
 
-    //read address from the router, get id(key)
+    //read address from the router, get id(key
     this.id = this.route.snapshot.paramMap.get('id');
   /**
    * OBS
