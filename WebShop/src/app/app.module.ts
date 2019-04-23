@@ -26,6 +26,7 @@ import { UserService } from './user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ProductService } from './product.service';
     MyOrdersComponent,
     AdminCoursesComponent,
     AdminOrdersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ import { ProductService } from './product.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
+      {path: '', component: ProductsComponent},
       {path: 'shop', component: ShopComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},

@@ -23,6 +23,8 @@ export class ProductService {
       )
     );
   }
+
+  
   /**
    * OBS This is the part that does not get an actual object from DB
    */
