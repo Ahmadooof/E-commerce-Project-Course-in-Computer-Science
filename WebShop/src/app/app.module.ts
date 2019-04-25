@@ -6,7 +6,7 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { CustomFormsModule } from 'ng2-validation'
+import { CustomFormsModule } from 'ng2-validation';
 
 
 import { AppComponent } from './app.component';
@@ -27,6 +27,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ProductsComponent } from './products/products.component';
+import { CategoryFormComponent } from './admin/category-form/category-form.component';
+import {CategoriesService} from './categories.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { ProductsComponent } from './products/products.component';
     AdminCoursesComponent,
     AdminOrdersComponent,
     ProductFormComponent,
-    ProductsComponent
+    ProductsComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,
@@ -54,43 +57,49 @@ import { ProductsComponent } from './products/products.component';
       {path: 'shop', component: ShopComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
-      
+
       {
-        path: 'my/orders', 
-        component: MyOrdersComponent, 
+        path: 'my/orders',
+        component: MyOrdersComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
       },
       {
-        path: 'admin/orders', 
-        component: AdminOrdersComponent, 
+        path: 'admin/orders',
+        component: AdminOrdersComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
       },
       {
-        path: 'admin/courses/new', 
-        component:  ProductFormComponent, 
+        path: 'admin/courses/new',
+        component:  ProductFormComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
       },
       {
-        path: 'admin/courses/:id', 
-        component:  ProductFormComponent, 
+        path: 'admin/courses/newCategory',
+        component:  CategoryFormComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
       },
       {
-        path: 'admin/courses', 
-        component: AdminCoursesComponent, 
+        path: 'admin/courses/:id',
+        component:  ProductFormComponent,
+        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      },
+      {
+        path: 'admin/courses',
+        component: AdminCoursesComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
       }
 
     ]),
     NgbModule.forRoot()
-    ],
+  ],
   providers: [
     AuthService,
     AuthGuard,
     AdminAuthGuard,
     UserService,
     CategoryService,
-    ProductService
+    ProductService,
+    CategoriesService
   ],
   bootstrap: [AppComponent]
 })

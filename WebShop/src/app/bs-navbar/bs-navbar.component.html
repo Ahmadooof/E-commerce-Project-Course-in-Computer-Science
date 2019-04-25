@@ -23,7 +23,7 @@
           <!-- Protects the Admin routes from non-admin users -->
           <ng-container *ngIf="appUser.isAdmin">
             <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
-            <a class="dropdown-item" routerLink="/admin/courses">Manage Courses</a>
+            <a class="dropdown-item" routerLink="/admin/courses">Manage Categories & Courses</a>
           </ng-container>
           <!-- End of admin protection -->
           <a class="dropdown-item" (click)="logout()"> Log Out </a>
