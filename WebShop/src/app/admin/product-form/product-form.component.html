@@ -42,7 +42,7 @@
             class="form-control" required>
           <option value=""></option>
           <option *ngFor="let c of categories$ | async" [value]="c.$key">
-            {{c.name}}
+            {{c.title}}
           </option>
         </select>
         <div class = "alert alert-danger" *ngIf="category.touched && category.invalid">

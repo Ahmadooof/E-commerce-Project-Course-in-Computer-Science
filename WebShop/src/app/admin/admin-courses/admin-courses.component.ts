@@ -11,16 +11,15 @@ export class AdminCoursesComponent implements OnInit {
 
   courses$;
 
-  constructor(private productService: ProductService, private router: Router) {
+  constructor(
+    private productService: ProductService, 
+    private router: Router) {
     this.courses$ = this.productService.getAll();
    }
   
    OnEdit(id: string){
-     console.log(id);
     this.router.navigate(['/admin/courses/', id])
    }
-
-   Cuack(foo: string){console.log('cuak' + foo)}
 
    filter(query: string){ 
      console.log(query);

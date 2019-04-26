@@ -19,4 +19,17 @@ export class CategoryService {
       )
     );
   }
+  get(id) {
+    return this.db.object('/categories/'+ id);   
+  }
+  
+  create(categories) {
+    return this.db.list('/categories').push(categories);
+  }
+  update(id, categories){
+    return this.db.object('/categories/' + id).update(categories);
+  }
+  delete(id){
+    return this.db.object('/categories/' + id).remove();
+  }
 }

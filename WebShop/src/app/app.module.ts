@@ -28,7 +28,7 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ProductsComponent } from './products/products.component';
 import { CategoryFormComponent } from './admin/category-form/category-form.component';
-import {CategoriesService} from './categories.service';
+import { AdminCategoriesComponent } from './admin/admin-categories/admin-categories.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,8 @@ import {CategoriesService} from './categories.service';
     AdminOrdersComponent,
     ProductFormComponent,
     ProductsComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    AdminCategoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +74,7 @@ import {CategoriesService} from './categories.service';
         component:  ProductFormComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
       },
-      {
+      { //TODELETE
         path: 'admin/courses/newCategory',
         component:  CategoryFormComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
@@ -87,6 +88,21 @@ import {CategoriesService} from './categories.service';
         path: 'admin/courses',
         component: AdminCoursesComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      },
+      {
+        path: 'admin/categories/newCategory',
+        component: CategoryFormComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
+      },
+      {
+        path: 'admin/categories/:id',
+        component: CategoryFormComponent,
+        canActivate:[AuthGuard,AdminAuthGuard]
+      },
+      {
+        path: 'admin/categories',
+        component: AdminCategoriesComponent,
+        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
       }
 
     ]),
@@ -99,7 +115,6 @@ import {CategoriesService} from './categories.service';
     UserService,
     CategoryService,
     ProductService,
-    CategoriesService
   ],
   bootstrap: [AppComponent]
 })

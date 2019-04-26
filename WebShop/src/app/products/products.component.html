@@ -15,7 +15,7 @@
       [queryParams]="{ category: c.key }"
        class="list-group-item list-group-item-action"
        [class.active]="category === c.key">
-          {{c.name}}
+          {{c.title}}
       </a>
     </div>
   </div>
@@ -34,7 +34,6 @@
               </div>
             </div>    
           </div>
-          <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
         </ng-container>
       </div>
   </div>
