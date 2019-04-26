@@ -41,7 +41,10 @@
             id="category"  
             class="form-control" required>
           <option value=""></option>
-          <option *ngFor="let c of categories$ | async" [value]="c.$key">
+          <!--
+            <option *ngFor="let c of categories$ | async" [value]="c.$key">
+           -->
+          <option *ngFor="let c of categories$ | async" [value]="c.title">
             {{c.title}}
           </option>
         </select>
