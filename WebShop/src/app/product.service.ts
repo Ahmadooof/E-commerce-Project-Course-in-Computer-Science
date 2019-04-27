@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
+import { Product } from './models/product';
 /**
  * CRUD courses
  */
@@ -19,11 +20,14 @@ export class ProductService {
     return this.db.list('/products', ref => (ref.orderByChild('name')))
     .snapshotChanges().pipe(
       map(actions => 
-        actions.map(a => ({ key: a.key, ...a.payload.val() }))
+        actions.map(a => ({ key: a.key, ...a.payload.val() } as Product ))
       )
     );
   }
 
+  getAllTest(){
+
+  }
   
   /**
    * OBS This is the part that does not get an actual object from DB

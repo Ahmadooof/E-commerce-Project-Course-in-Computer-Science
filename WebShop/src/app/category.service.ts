@@ -1,6 +1,8 @@
+import { categoryModel } from './models/categoryModel';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
+
 
 @Injectable()
 export class CategoryService {
@@ -23,9 +25,12 @@ export class CategoryService {
     return this.db.object('/categories/'+ id);   
   }
   
-  create(categories) {
-    return this.db.list('/categories').push(categories);
+  getMore(id){
+    return this.db.object('/categories/'+ id).valueChanges().subscribe();
   }
+  create(categories) {
+    return this.db.object('/categories/'+categories.title).set(categories);
+    }
   update(id, categories){
     return this.db.object('/categories/' + id).update(categories);
   }
@@ -33,3 +38,9 @@ export class CategoryService {
     return this.db.object('/categories/' + id).remove();
   }
 }
+/**
+ * create(categories) {
+    return this.db.list('/categories').push(categories);
+  }
+ * 
+ */
