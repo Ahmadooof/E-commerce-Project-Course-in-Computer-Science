@@ -25,14 +25,7 @@
     <div class="row">
         <ng-container *ngFor="let p of products$ | async">
           <div class="col">
-            <div class="card" style="width: 15rem;">
-              <img class="card-img-top" [src]="p.imageUrl" alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">{{ p.title }}</h4>
-                <p class="card-text">{{ p.price | currency:'SEK ': 'symbol' }}</p>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
-              </div>
-            </div>    
+            <product-cart [product] = "p" [shopping-cart]="cart"></product-cart>
           </div>
         </ng-container>
       </div>

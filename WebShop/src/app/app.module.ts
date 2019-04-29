@@ -29,6 +29,8 @@ import { ProductService } from './product.service';
 import { ProductsComponent } from './products/products.component';
 import { CategoryFormComponent } from './admin/category-form/category-form.component';
 import { AdminCategoriesComponent } from './admin/admin-categories/admin-categories.component';
+import { ShoppingCartService } from './shopping-cart.service';
+import { ProductCartComponent } from './products/product-cart/product-cart.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { AdminCategoriesComponent } from './admin/admin-categories/admin-categor
     ProductsComponent,
     CategoryFormComponent,
     AdminCategoriesComponent,
+    ProductCartComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +118,7 @@ import { AdminCategoriesComponent } from './admin/admin-categories/admin-categor
     UserService,
     CategoryService,
     ProductService,
+    ShoppingCartService,
   ],
   bootstrap: [AppComponent]
 })
