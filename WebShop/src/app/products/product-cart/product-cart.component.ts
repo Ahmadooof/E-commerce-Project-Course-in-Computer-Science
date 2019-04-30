@@ -31,6 +31,7 @@ export class ProductCartComponent implements OnInit {
 
     let item = this.ShoppingCartComponent.items[this.product.key];
     return item ? item.quantity : 0;
+
   }
   
 

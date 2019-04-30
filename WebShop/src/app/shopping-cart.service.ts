@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import { Product } from './models/product';
 import 'rxjs/add/operator/take';
-import { take } from 'rxjs/operators'
 import { Observable } from 'rxjs';
+import { promise } from 'protractor';
 import { shoppingCart } from './models/shopping-cart';
+import { Product } from './models/product';
+import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +20,25 @@ export class ShoppingCartService {
       dateCreated: new Date().getTime()
     });
   }
+  
+  // async getCart(): Promise<Observable<shoppingCart>> {
+  //   let cartId = await this.getOrCreateCartId();
+  //   return this.db.object('/shopping-carts/' + cartId).valueChanges()
+  //     .pipe(map(x => new shoppingCart(x)));
+  // }
 
-   async getCart(): Promise<AngularFireObject<shoppingCart>> {
+  async getCart(): Promise<Observable<shoppingCart>> {
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId);
+    return this.db.object('/shopping-carts/' + cartId).valueChanges()
+      .pipe(map(x => new shoppingCart(x)));
   }
-
+  
   private async getOrCreateCartId(): Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if (cartId)
       return cartId;
 
-    // if we don't have shopping-cart then we are store it in db and store it in the user's local storage (browser)
+    // else we don't have shopping-cart then we are store it in db and store it in the user's local storage (browser)
     let result = await this.create();
     localStorage.setItem('cartId', result.key);
     return result.key;
@@ -44,11 +53,11 @@ export class ShoppingCartService {
     this.updateItemQuantity(product, +1);
   }
 
-  async removeFromCart(product:Product){
-   this.updateItemQuantity(product, -1);
+  async removeFromCart(product: Product) {
+    this.updateItemQuantity(product, -1);
   }
 
-  private async updateItemQuantity(product:Product, change:number){
+  private async updateItemQuantity(product: Product, change: number) {
     let cartId = await this.getOrCreateCartId();
     let item$: Observable<any> = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).valueChanges();
     let item$$ = this.getItem(cartId, product.key);

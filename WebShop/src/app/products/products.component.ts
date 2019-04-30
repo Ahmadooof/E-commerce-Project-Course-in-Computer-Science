@@ -15,7 +15,7 @@ import { Subscribable, Subscription } from 'rxjs';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit, OnDestroy{
-
+  
   subscribtion:Subscription;
   cart:any;
   products$;
@@ -42,8 +42,9 @@ export class ProductsComponent implements OnInit, OnDestroy{
   }
 
   async ngOnInit() {
-   this.subscribtion = (await this.cartService.getCart())
-   .valueChanges().subscribe(cart => this.cart = cart);
+    this.subscribtion = (await this.cartService.getCart())
+      .subscribe(cart => this.cart = cart);
+
   }
 
   ngOnDestroy(){

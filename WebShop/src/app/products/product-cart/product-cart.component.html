@@ -5,8 +5,8 @@
       <p class="card-text">{{ product.price | currency:'SEK ': 'symbol' }}</p>
       <div *ngIf="showActions" >
         <button 
-      *ngIf="getQuantity() === 0 ; else updateQuantity"
-          (click)="addToCart()" class="btn btn-primary">Add to Cart
+          *ngIf="getQuantity() === 0 ; else updateQuantity"
+              (click)="addToCart()" class="btn btn-primary">Add to Cart
         </button>
         
           <ng-template #updateQuantity>
