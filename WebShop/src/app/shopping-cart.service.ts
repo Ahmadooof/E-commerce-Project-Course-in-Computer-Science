@@ -21,11 +21,6 @@ export class ShoppingCartService {
     });
   }
   
-  // async getCart(): Promise<Observable<shoppingCart>> {
-  //   let cartId = await this.getOrCreateCartId();
-  //   return this.db.object('/shopping-carts/' + cartId).valueChanges()
-  //     .pipe(map(x => new shoppingCart(x)));
-  // }
 
   async getCart(): Promise<Observable<shoppingCart>> {
     let cartId = await this.getOrCreateCartId();
