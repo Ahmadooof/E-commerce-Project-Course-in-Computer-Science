@@ -19,8 +19,6 @@ import { AuthService } from './auth.service';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { AdminCoursesComponent } from './admin/admin-courses/admin-courses.component';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminAuthGuardService as AdminAuthGuard } from './admin-auth-guard.service';
 import { UserService } from './user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
@@ -31,6 +29,7 @@ import { CategoryFormComponent } from './admin/category-form/category-form.compo
 import { AdminCategoriesComponent } from './admin/admin-categories/admin-categories.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductCartComponent } from './products/product-cart/product-cart.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -41,12 +40,7 @@ import { ProductCartComponent } from './products/product-cart/product-cart.compo
     ShoppingCartComponent,
     HomeComponent,
     MyOrdersComponent,
-    AdminCoursesComponent,
-    AdminOrdersComponent,
-    ProductFormComponent,
     ProductsComponent,
-    CategoryFormComponent,
-    AdminCategoriesComponent,
     ProductCartComponent,
   ],
   imports: [
@@ -67,49 +61,9 @@ import { ProductCartComponent } from './products/product-cart/product-cart.compo
         component: MyOrdersComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
       },
-      {
-        path: 'admin/orders',
-        component: AdminOrdersComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      {
-        path: 'admin/courses/new',
-        component:  ProductFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      { //TODELETE
-        path: 'admin/courses/newCategory',
-        component:  CategoryFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      {
-        path: 'admin/courses/:id',
-        component:  ProductFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      {
-        path: 'admin/courses',
-        component: AdminCoursesComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      {
-        path: 'admin/categories/newCategory',
-        component: CategoryFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      },
-      {
-        path: 'admin/categories/:id',
-        component: CategoryFormComponent,
-        canActivate:[AuthGuard,AdminAuthGuard]
-      },
-      {
-        path: 'admin/categories',
-        component: AdminCategoriesComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      }
-
     ]),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AdminModule,
   ],
   providers: [
     AuthService,
