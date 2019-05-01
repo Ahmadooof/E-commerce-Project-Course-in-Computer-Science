@@ -20,6 +20,11 @@ export class ShoppingCartService {
       dateCreated: new Date().getTime()
     });
   }
+
+  async clearCart() {
+    let cartId = await this.getOrCreateCartId();
+    this.db.object('/shopping-carts/' + cartId + '/items/').remove();
+  }
   
 
   async getCart(): Promise<Observable<shoppingCart>> {
