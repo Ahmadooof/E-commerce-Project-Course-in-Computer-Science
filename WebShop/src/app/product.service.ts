@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireStorage} from '@angular/fire/storage';
 import { map } from 'rxjs/operators';
 import { Product } from './models/product';
 /**
@@ -10,7 +11,7 @@ import { Product } from './models/product';
 })
 export class ProductService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private af:AngularFireStorage) { }
 
   create(product){
     return this.db.list('/products').push(product);
@@ -25,10 +26,7 @@ export class ProductService {
     );
   }
 
-  getAllTest(){
-
-  }
-  
+    
   /**
    * OBS This is the part that does not get an actual object from DB
    */
@@ -43,4 +41,10 @@ export class ProductService {
   deleteProduct(id){
     return this.db.object('/products/' + id).remove();
   }
+  //this if for file storage returns an AFStorage object
+  uploadFile(){
+    return this.af;
+  }
+
+ 
 }
