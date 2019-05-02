@@ -84,11 +84,6 @@
       <button [disabled]="!f.valid" class="btn btn-primary">Save</button>
       <button *ngIf="id" type="button" (click)= "delete()" class="btn btn-danger">Delete</button>
       <button type="button" class="btn btn-info" (click)= "back()">Back</button>
-      <input type="file" (change)="startUpload($event)">
-      <div>{{ uploadPercent | async }}</div>
-      <button type="button" class="btn btn-info" (click)= "pushLink()">Upload Link</button>
-      <br>
-     <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
     </form>
   </div>
 

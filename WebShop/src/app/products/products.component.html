@@ -26,21 +26,6 @@
         <ng-container *ngFor="let p of products$ | async">
           <div class="col">
             <product-cart [product] = "p" [shopping-cart]="cart"></product-cart>
-            <div class="card" style="width: 15rem;">
-              <img class="card-img-top" [src]="p.imageUrl" alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">{{ p.title }}</h4>
-                <p class="card-text">{{ p.price | currency:'SEK ': 'symbol' }}</p>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
-
-                <div *ngFor="let l of links$ | async">
-                    <div *ngIf="p.key==l.key"> 
-                       <a href="{{l.link}}">Download cloud material</a> 
-                    </div> 
-                </div>    
-
-              </div>
-            </div>    
           </div>
         </ng-container>
       </div>
