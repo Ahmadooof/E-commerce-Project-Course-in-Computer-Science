@@ -9,7 +9,10 @@ import { Product } from './models/product';
   providedIn: 'root'
 })
 export class ProductService {
-
+  myArray : Product[] = [];
+  products: Product[] = [];
+  category: any;
+  filterProducts: Product[];
   constructor(private db: AngularFireDatabase) { }
 
   create(product){
@@ -26,9 +29,21 @@ export class ProductService {
   }
 
   getAllTest(){
-
+    this.db.list('/products', ref => (ref.orderByChild('name')))
+    .snapshotChanges().pipe(
+      map(actions => 
+        actions.map(a => 
+          this.myArray = actions.map(a => ({ key: a.key, ...a.payload.val() } as Product ))
+        )
+      )
+    );
+    console.log("CUAK");    
   }
   
+  wtf(){
+    this.getAllTest();
+    return this.myArray
+  }
   /**
    * OBS This is the part that does not get an actual object from DB
    */

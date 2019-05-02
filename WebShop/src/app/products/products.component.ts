@@ -28,17 +28,40 @@ export class ProductsComponent implements OnInit, OnDestroy{
     title: string,
   }
 
+
   constructor(
     route: ActivatedRoute,
     productService: ProductService,
     categoryService: CategoryService,
     private cartService: ShoppingCartService) {
-    this.products$ = productService.getAll();
-    this.categories$ = categoryService.getAll();
-    route.queryParamMap.subscribe(params => {
-      this.category = params.get('category');
-    });
+      this.categories$ = categoryService.getAll();
 
+      productService                         
+      .getAll()
+      .switchMap(products => {
+        this.products = products;
+        return route.queryParamMap;
+      })
+      .subscribe(params => {
+        this.category = params.get('category');
+        
+        this.filterProducts = (this.category ) ? 
+          this.products.filter(p => p.category === this.category) : 
+          this.products;
+      });
+
+      productService.getAll().subscribe(p => this.filterProducts = this.products = p);
+
+  }
+//Filter by search bar
+  filter(query : string){
+    this.filterProducts = (query) ? 
+    this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase()) && this.categoryCheck(p.category) ) :
+    this.products;
+  }
+
+  categoryCheck(courseCategory: string){
+    return courseCategory  === this.category ||  !this.category;
   }
 
   async ngOnInit() {
@@ -52,21 +75,3 @@ export class ProductsComponent implements OnInit, OnDestroy{
   }
 
 }
-
-
-
-
-
-/**
- *  constructor(
-    route: ActivatedRoute,
-    productService: ProductService,
-    categoryService: CategoryService) {
-    this.products$ = productService.getAll();
-    this.categories$ = categoryService.getAll();
-    route.queryParamMap.subscribe(params => {
-        this.category = params.get('category');
-    });
-  }
- *
- */
