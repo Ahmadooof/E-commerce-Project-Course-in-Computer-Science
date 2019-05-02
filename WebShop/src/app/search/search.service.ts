@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
+import { ProductService } from '../product.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private productService: ProductService) { }
 
   getProducts() {
     return this.db.list('/products')

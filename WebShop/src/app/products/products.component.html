@@ -2,7 +2,6 @@
 
   <!-- CATEGORY -->
   <div class="col-3">
-    <h6>Category</h6> 
     <div class="list-group">
       <a
         class="list-group-item list-group-item-action"
@@ -20,10 +19,21 @@
     </div>
   </div>
 
-  <!-- CARD -->
-  <div class="col">      
+
+  <!-- Right Colum Search bar-->
+
+  <div class="col">  
+      <input
+        #query
+        (keyup)="filter(query.value)"
+        type="text"
+        class="form-control"
+        placeholder="My Search..."
+        />
+    <!--Right colum card -->
     <div class="row">
-        <ng-container *ngFor="let p of products$ | async">
+      <!--<ng-container *ngFor="let p of products$ | async"> -->
+        <ng-container *ngFor="let p of filterProducts">
           <div class="col">
             <product-cart [product] = "p" [shopping-cart]="cart" [link]="p.link" [hasLink] = "p.hasLink"></product-cart>
           </div>

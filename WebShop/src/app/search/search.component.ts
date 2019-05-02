@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Product } from './../models/product';
+import { Component, OnDestroy } from '@angular/core';
 import { NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
 import { SearchService } from './search.service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from '../category.service';
 import { ProductService } from '../product.service';
+import { getLocaleCurrencyName } from '@angular/common';
 
 // this is where we get the Firebase objects (Categories).
 const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
@@ -23,21 +25,69 @@ const courses = ['Discrete Mathematics', 'Angular Fire Master Course', 'How to m
   'Language and Logic', 'Dont leave empty courses', 'Everything in cells', 'Cryptography',
   'Computer security', 'Life walkthrough for beginners', 'Helena testing categories', 'How to breathe',
   'Helena will delete this eventually', 'Breathtaking', 'Coding theory']; // Hard coded courses.
+  @Component({
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.css'],
+    providers: [NgbTypeaheadConfig] // add NgbTypeaheadConfig to the component providers (Search)
+  })
+  export class SearchComponent  implements OnDestroy{
+    
   
-@Component({
+    filterpotatos: any [];
+    potato: any[];
+    subs : Subscription;
+
+    constructor (route: ActivatedRoute, 
+      config: NgbTypeaheadConfig, 
+      searchService: SearchService, 
+      categoryService: CategoryService, 
+      db: AngularFireDatabase, 
+      productService: ProductService) {
+      // customize default values of typeaheads used by this component tree
+      /**/ config.showHint = true; // Related to Search Function
+      
+     this.subs = productService.getAll().subscribe(p => this.filterpotatos = this.potato = p);
+    } 
+  
+    search = (text$: Observable<string>) =>
+    text$.pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        map(term => term.length < 1 ? []
+          : courses.filter(t => t.toLowerCase()
+            .startsWith(term.toLocaleLowerCase()))
+            .splice(0, 10))
+      )
+  
+  
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+}
+
+
+
+/**
+ @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  /**/ providers: [NgbTypeaheadConfig] // add NgbTypeaheadConfig to the component providers (Search)
+  providers: [NgbTypeaheadConfig] // add NgbTypeaheadConfig to the component providers (Search)
 })
 export class SearchComponent {
-  /**/ //public model: any; // Related to Search Function
-  //products$;
 
-  constructor(route: ActivatedRoute, config: NgbTypeaheadConfig, searchService: SearchService, 
-    categoryService: CategoryService, db: AngularFireDatabase, productService: ProductService) {
+  constructor (route: ActivatedRoute, 
+    config: NgbTypeaheadConfig, 
+    searchService: SearchService, 
+    categoryService: CategoryService, 
+    db: AngularFireDatabase, 
+    productService: ProductService) {
     // customize default values of typeaheads used by this component tree
-    /**/ config.showHint = true; // Related to Search Function
+    config.showHint = true; // Related to Search Function
+      
+  
   }
 
   search = (text$: Observable<string>) =>
@@ -49,12 +99,5 @@ export class SearchComponent {
           .startsWith(term.toLocaleLowerCase()))
           .splice(0, 10))
     )
-
-/*
-    getFilteredProducts(title: string): Observable<Product[]> {
-      return this.af.database.list('jobs', {query: {orderByChild : 'name', equalTo: title}})
-        .map(_products => _products.filter(products => products.title > title));
-  
-    }
-    */
 }
+ */
