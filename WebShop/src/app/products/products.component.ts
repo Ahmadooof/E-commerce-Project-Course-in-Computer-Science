@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ProductService } from '../product.service';
 import { CategoryService } from '../category.service';
+import { FileLinkService } from '../file-link.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import 'rxjs/add/operator/switchMap';
@@ -8,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { Subscribable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +22,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
   cart:any;
   products$;
   categories$;
+  links$;
   category: string;
   filterProducts: Product[] = [];
   products: Product[] = [];
@@ -32,9 +35,11 @@ export class ProductsComponent implements OnInit, OnDestroy{
     route: ActivatedRoute,
     productService: ProductService,
     categoryService: CategoryService,
-    private cartService: ShoppingCartService) {
+    private cartService: ShoppingCartService, 
+    fileLinkService: FileLinkService) { 
     this.products$ = productService.getAll();
     this.categories$ = categoryService.getAll();
+    this.links$ = fileLinkService.getAll();
     route.queryParamMap.subscribe(params => {
       this.category = params.get('category');
     });
@@ -50,7 +55,6 @@ export class ProductsComponent implements OnInit, OnDestroy{
   ngOnDestroy(){
     this.subscribtion.unsubscribe();
   }
-
 }
 
 
