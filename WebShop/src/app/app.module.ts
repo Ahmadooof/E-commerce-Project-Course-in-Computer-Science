@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule} from '@angular/fire';
 import { AngularFireDatabaseModule} from '@angular/fire/database';
 import { AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -31,6 +32,7 @@ import { ShoppingCartService } from './shopping-cart.service';
 import { ProductCartComponent } from './products/product-cart/product-cart.component';
 import { AdminModule } from './admin/admin.module';
 import { SearchComponent } from './search/search.component';
+import { FileLinkService } from './file-link.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { SearchComponent } from './search/search.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     RouterModule.forRoot([
       {path: '', component: ProductsComponent},
       {path: 'shop', component: ShopComponent},
@@ -75,6 +78,7 @@ import { SearchComponent } from './search/search.component';
     CategoryService,
     ProductService,
     ShoppingCartService,
+    FileLinkService,
   ],
   bootstrap: [AppComponent]
 })
