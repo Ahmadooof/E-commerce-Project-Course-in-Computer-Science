@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { Subscribable, Subscription } from 'rxjs';
+import { FileLinkService } from '../file-link.service';
+
 
 @Component({
   selector: 'app-products',
@@ -20,6 +22,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
   cart:any;
   products$;
   categories$;
+  links$;
   category: string;
   filterProducts: Product[] = [];
   products: Product[] = [];
@@ -32,9 +35,11 @@ export class ProductsComponent implements OnInit, OnDestroy{
     route: ActivatedRoute,
     productService: ProductService,
     categoryService: CategoryService,
-    private cartService: ShoppingCartService) {
+    private cartService: ShoppingCartService,
+    fileLinkService: FileLinkService) {
     this.products$ = productService.getAll();
     this.categories$ = categoryService.getAll();
+    this.links$ = fileLinkService.getAll();
     route.queryParamMap.subscribe(params => {
       this.category = params.get('category');
     });

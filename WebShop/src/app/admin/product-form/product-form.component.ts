@@ -4,6 +4,11 @@ import 'rxjs/add/operator/take';
 import { CategoryService } from '../../category.service';
 import { ProductService } from '../../product.service';
 import { Observable } from 'rxjs';
+import { FileLinkService } from '../../file-link.service';
+import { finalize } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { async } from '@angular/core/testing';
+
 
 @Component({
   selector: 'app-product-form',
@@ -12,15 +17,23 @@ import { Observable } from 'rxjs';
 })
 export class ProductFormComponent implements OnInit {
 categories$;
+fileLinks$;
 course = {};
 id;
+linkToFile;
+
+uploadPercent: Observable<number>;
+downloadURL: Observable<string>;
+
 
   constructor(
     private router: Router,
     private route:ActivatedRoute,
     private categoryService: CategoryService, 
-    private productService: ProductService) {
+    private productService: ProductService,
+    private fileLinkService : FileLinkService) {
     this.categories$ = categoryService.getAll();
+    this.fileLinks$ = fileLinkService.getAll();
 
     //read address from the router, get id(key
     this.id = this.route.snapshot.paramMap.get('id');
@@ -62,6 +75,25 @@ id;
     if (!confirm('Go back to courses without saving?')) return;
     this.router.navigate(['/admin/courses']);
   }
+
+  startUpload(event: any){
+    const file: File = event.target.files[0];
+    const filePath = `${this.id}`;
+    const ref = this.productService.uploadFile().ref(filePath);
+    const task = this.productService.uploadFile().upload(filePath, file);
+    
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+    this.downloadURL = ref.getDownloadURL();
+  }
+
+  //creates the fields in the db wit the links to download
+  pushLink(){
+    this.downloadURL.subscribe(v => this.linkToFile=v);
+    
+    this.fileLinkService.create(this.linkToFile,this.id);
+  }
+
 
   ngOnInit() {
   }

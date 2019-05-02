@@ -11,8 +11,11 @@ export class ProductCartComponent implements OnInit {
   @Input('product') product: Product;
   @Input('show-actions') showActions = true;
   @Input('shopping-cart') ShoppingCartComponent;
+  @Input('link') link: String;
+  @Input('hasLink') hasLink: boolean;
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private cartService: ShoppingCartService) {
+  }
 
   ngOnInit() {
     
@@ -31,8 +34,5 @@ export class ProductCartComponent implements OnInit {
 
     let item = this.ShoppingCartComponent.items[this.product.key];
     return item ? item.quantity : 0;
-
   }
-  
-
 }
