@@ -1,14 +1,9 @@
-import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take';
 import { CategoryService } from '../../category.service';
 import { ProductService } from '../../product.service';
 import { Observable } from 'rxjs';
-import { FileLinkService } from '../../file-link.service';
-import { finalize } from 'rxjs/operators';
-import { map } from 'rxjs/operators';
-import { async } from '@angular/core/testing';
-
 
 @Component({
   selector: 'app-product-form',
@@ -17,22 +12,15 @@ import { async } from '@angular/core/testing';
 })
 export class ProductFormComponent implements OnInit {
 categories$;
-fileLinks$;
 course = {};
 id;
-linkToFile;
-
-uploadPercent: Observable<number>;
-downloadURL: Observable<string>;
 
   constructor(
     private router: Router,
     private route:ActivatedRoute,
     private categoryService: CategoryService, 
-    private productService: ProductService,
-    private fileLinkService : FileLinkService) {
+    private productService: ProductService) {
     this.categories$ = categoryService.getAll();
-    this.fileLinks$ = fileLinkService.getAll();
 
     //read address from the router, get id(key
     this.id = this.route.snapshot.paramMap.get('id');
@@ -74,26 +62,6 @@ downloadURL: Observable<string>;
     if (!confirm('Go back to courses without saving?')) return;
     this.router.navigate(['/admin/courses']);
   }
-
-  //file upload to firebase cloud storage
-  startUpload(event: any){
-    const file: File = event.target.files[0];
-    const filePath = `${this.id}`;
-    const ref = this.productService.uploadFile().ref(filePath);
-    const task = this.productService.uploadFile().upload(filePath, file);
-    
-    // observe percentage changes
-    this.uploadPercent = task.percentageChanges();
-    this.downloadURL = ref.getDownloadURL();
-  }
-
-  //creates the fields in the db wit the links to download
-  pushLink(){
-    this.downloadURL.subscribe(v => this.linkToFile=v);
-    
-    this.fileLinkService.create(this.linkToFile,this.id);
-  }
-
 
   ngOnInit() {
   }

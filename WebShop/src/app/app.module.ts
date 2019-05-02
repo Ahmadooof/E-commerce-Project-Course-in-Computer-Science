@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule} from '@angular/fire';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule} from '@angular/fire/database';
 import { AngularFireAuthModule} from '@angular/fire/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -51,7 +50,6 @@ import { AdminModule } from './admin/admin.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFireStorageModule,
     RouterModule.forRoot([
       {path: '', component: ProductsComponent},
       {path: 'shop', component: ShopComponent},
