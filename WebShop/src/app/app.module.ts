@@ -30,6 +30,7 @@ import { AdminCategoriesComponent } from './admin/admin-categories/admin-categor
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductCartComponent } from './products/product-cart/product-cart.component';
 import { AdminModule } from './admin/admin.module';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AdminModule } from './admin/admin.module';
     MyOrdersComponent,
     ProductsComponent,
     ProductCartComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
