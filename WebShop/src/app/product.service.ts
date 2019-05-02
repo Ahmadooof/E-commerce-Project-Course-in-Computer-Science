@@ -14,7 +14,7 @@ export class ProductService {
   products: Product[] = [];
   category: any;
   filterProducts: Product[];
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private af: AngularFireStorage) { }
 
   create(product){
     return this.db.list('/products').push(product);
