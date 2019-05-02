@@ -53,6 +53,21 @@
           </div>
       </div>    
       <div class="form-group">
+        <!--STOCK-->
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input #stock="ngModel" 
+                [(ngModel)]="course.stock" name="stock" 
+                id="stock" 
+                type="number" 
+                class="form-control" 
+                required [min]="0">
+    
+            <div class = "alert alert-danger" *ngIf="stock.touched && stock.invalid">
+              <div *ngIf="stock.errors.required">You must provide a stock amount.</div>
+              <div *ngIf="stock.errors.min">The stock amount cannot be negative.</div>
+            </div>
+          </div>
       <!--IMG-->
         <label for="imageUrl">Image URL</label>
         <input #imgUrl = "ngModel" 
