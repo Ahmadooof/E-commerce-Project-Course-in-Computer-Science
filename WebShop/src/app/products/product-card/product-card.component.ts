@@ -3,11 +3,11 @@ import { Product } from 'src/app/models/product';
 import { ShoppingCartService } from 'src/app/shopping-cart.service';
 
 @Component({
-  selector: 'product-cart',
-  templateUrl: './product-cart.component.html',
-  styleUrls: ['./product-cart.component.css']
+  selector: 'product-card',
+  templateUrl: './product-card.component.html',
+  styleUrls: ['./product-card.component.css']
 })
-export class ProductCartComponent implements OnInit {
+export class ProductCardComponent implements OnInit {
   @Input('product') product: Product;
   @Input('show-actions') showActions = true;
   @Input('shopping-cart') ShoppingCartComponent;

@@ -42,7 +42,7 @@
       <!--<ng-container *ngFor="let p of products$ | async"> -->
         <ng-container *ngFor="let p of filterProducts">
           <div class="col">
-            <product-cart [product] = "p" [shopping-cart]="cart" [link]="p.link" [hasLink] = "p.hasLink"></product-cart>
+            <product-card [product] = "p" [shopping-cart]="cart" [link]="p.link" [hasLink] = "p.hasLink"></product-card>
           </div>
         </ng-container>
       </div>

@@ -1,0 +1,65 @@
+<!-- WARNING FLAG -->
+<div class="alert alert-danger" role="alert">
+  The navigation bar is temporarily broken. Please go back to the <a routerLink="/" class="alert-link cursor-toggle ">HOME PAGE</a> through "Shop" or "BACK TO HOME PAGE"
+  buttons!
+</div>
+<div class="card p-3 p-md-5 m-md-3 text-center mb-4 shadow-sm">
+  <!-- mb-4 shadow-sm adds a shadow to the card. -->
+  <!-- PRODUCT IMAGE -->
+  <img class="card-img-top" [src]="product.imageUrl" 
+    width="100%" height="225" 
+    preserveAspectRatio="xMidYMid slice"
+    alt="image not found">
+  <div class="card-body">
+    <!-- PRODUCT TITLE -->
+    <h4 class="card-title" style="height: 2.5em; text-align: center">Discrete Mathematics</h4>
+    <!--{{ product.title }}-->
+    <!-- PRODUCT DESCRIPTION -->
+    <p class="card-text">SOME RANDOM TEXT THAT WILL BE REPLACED
+      ONCE WE GET OUR PRODUCT PAGE ONLINE. SOME RANDOM TEXT THAT WILL BE REPLACED
+      ONCE WE GET OUR PRODUCT PAGE ONLINE. SOME RANDOM TEXT THAT WILL BE REPLACED
+      ONCE WE GET OUR PRODUCT PAGE ONLINE.</p>
+    <!--{{ product.description }}-->
+    <hr>
+    <!-- COMING SOON -->
+    <a class="btn btn-outline-secondary cursor-toggle" routerLink="/">BACK TO HOME PAGE</a>
+
+    <div>
+      <div class="btn-group">
+        <!-- ADD TO CART FUNCTINALITY -->
+        <div *ngIf="showActions">
+          <button *ngIf="getQuantity() === 0 ; else updateQuantity" (click)="addToCart()" class="btn btn-primary"
+            style="width: 10em;">Add to cart</button>
+
+          <!-- UPDATE QUANTITY FUNCTINALITY -->
+          <ng-template #updateQuantity>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <!-- REMOVE ITEM -->
+              <button type="button" class="btn btn-secondary" (click)="removeFromCart()" style="width: 3em;">-</button>
+              <!-- DISPLAY QUATITY -->
+              <span class="textAlignCenter input-group-text" style="width: 4em;">{{ getQuantity() }}</span>
+              <!-- ADD ITEM -->
+              <button type="button" class="btn btn-secondary" (click)="addToCart()" style="width: 3em;">+</button>
+            </div>
+          </ng-template>
+
+        </div>
+      </div>
+      <!-- PRICE -->
+      <div class="product-price-group">
+        <small class="text-muted">{{ product.price | currency:'SEK ': 'symbol' }}</small>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-normal">{{ product.title }}</h1>
+    <p class="lead font-weight-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with
+      this example based on Apple’s marketing pages.</p>
+    <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+  </div>
+  <div class="product-device shadow-sm d-none d-md-block"></div>
+  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+</div>-->

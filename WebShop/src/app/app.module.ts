@@ -25,9 +25,10 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartService } from './shopping-cart.service';
-import { ProductCartComponent } from './products/product-cart/product-cart.component';
+import { ProductCardComponent } from './products/product-card/product-card.component';
 import { AdminModule } from './admin/admin.module';
 import { FileLinkService } from './file-link.service';
+import { ProductPageComponent } from './products/product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FileLinkService } from './file-link.service';
     HomeComponent,
     MyOrdersComponent,
     ProductsComponent,
-    ProductCartComponent,
+    ProductCardComponent,
+    ProductPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,11 @@ import { FileLinkService } from './file-link.service';
       {path: 'shop', component: ShopComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
-      
+      {
+        path: 'products/product-page',
+        component: ProductPageComponent,
+        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      },
       {
         path: 'my/orders',
         component: MyOrdersComponent,

@@ -1,0 +1,11 @@
+p {
+    font-size: 12px;
+}
+
+.textAlignCenter {
+    display:inline-block;
+}
+
+.cursor-toggle {
+    cursor: pointer;
+}
