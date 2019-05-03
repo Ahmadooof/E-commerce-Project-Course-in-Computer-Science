@@ -1,35 +1,42 @@
 <div class="row">
 
-  <!-- CATEGORY -->
+  <!-- CATEGORY COLUMN -->
   <div class="col-3">
+    <!-- SEARCH ICON UTF-8 -->
+    <div class="input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">Ϙ</span>
+      </div>
+      
+      <!-- SEARCH FIELD -->
+      <input
+      #query
+      (keyup)="filter(query.value)"
+      type="text"
+      class="form-control"
+      placeholder="Search by product..."
+      />
+    </div>
+    <hr>
+    <!-- DISPLAY CATEGORIES -->
     <div class="list-group">
-      <a
-        class="list-group-item list-group-item-action"
-        [class.active]="!category"
-        routerLink="/">
+      <a class="list-group-item list-group-item-action" 
+      [class.active]="!category" 
+      routerLink="/">
         All categories
       </a>
-      <a *ngFor = "let c of categories$ | async"
-      routerLink="/"
+      <a *ngFor="let c of categories$ | async" 
+      routerLink="/" 
       [queryParams]="{ category: c.key }"
-       class="list-group-item list-group-item-action"
-       [class.active]="category === c.key">
-          {{c.title}}
+        class="list-group-item list-group-item-action" 
+        [class.active]="category === c.key">
+        {{c.title}}
       </a>
     </div>
   </div>
 
-
-  <!-- Right Colum Search bar-->
-
-  <div class="col">  
-      <input
-        #query
-        (keyup)="filter(query.value)"
-        type="text"
-        class="form-control"
-        placeholder="My Search..."
-        />
+  <!-- PRODUCTS COLUMN -->
+  <div class="col">
     <!--Right colum card -->
     <div class="row">
       <!--<ng-container *ngFor="let p of products$ | async"> -->
@@ -40,6 +47,4 @@
         </ng-container>
       </div>
   </div>
-
 </div>
-
