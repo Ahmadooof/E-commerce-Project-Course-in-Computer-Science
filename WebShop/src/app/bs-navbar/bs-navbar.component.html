@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top mb-4 shadow-sm">
   <a class="navbar-brand" routerLink="/">Shop</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" 
   data-target="#navbarsExampleDefault"
@@ -11,7 +11,7 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">
           Shopping Cart
-          <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">
+          <span class="badge badge-success" *ngIf="cart$ | async as cart">
             {{ cart.totalItemsCount }}
           </span>
         </a>
@@ -34,7 +34,7 @@
           <ng-container *ngIf="appUser.isAdmin">
             <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
             <a class="dropdown-item" routerLink="/admin/courses">Manage Courses</a>
-            <a class="dropdown-item" routerLink="/admin/categories">Manage Categories </a>
+            <a class="dropdown-item" routerLink="/admin/categories">Manage Categories</a>
           </ng-container>
           <!-- End of admin protection -->
           <a class="dropdown-item" (click)="logout()"> Log Out </a>

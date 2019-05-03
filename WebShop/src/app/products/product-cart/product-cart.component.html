@@ -1,4 +1,49 @@
-<div class="card" *ngIf="product.title"  style="width: 15rem;">
+<div class="card mb-4 shadow-sm" *ngIf="product.title" style="width: 22.5em;">
+  <!-- mb-4 shadow-sm adds a shadow to the card. -->
+  <img class="card-img-top" [src]="product.imageUrl" width="100%" height="225" preserveAspectRatio="xMidYMid slice"
+    focusable="false" alt="image not found">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">SOME RANDOM TEXT THAT WILL BE REPLACED
+      ONCE WE GET OUR PRODUCT PAGE ONLINE</p>
+    <hr>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        <!-- ADD TO CART FUNCTINALITY -->
+        <div *ngIf="showActions">
+          <button *ngIf="getQuantity() === 0 ; else updateQuantity" (click)="addToCart()" class="btn btn-primary"
+            style="width: 10em;">Add to cart</button>
+
+          <!-- UPDATE QUANTITY FUNCTINALITY -->
+          <ng-template #updateQuantity>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <!-- REMOVE ITEM -->
+              <button type="button" class="btn btn-secondary" (click)="removeFromCart()" style="width: 3em;">-</button>
+              <!-- DISPLAY QUATITY -->
+              <span class="textAlignCenter input-group-text" style="width: 4em;">{{ getQuantity() }}</span>
+              <!-- ADD ITEM -->
+              <button type="button" class="btn btn-secondary" (click)="addToCart()" style="width: 3em;">+</button>
+            </div>
+          </ng-template>
+
+        </div>
+      </div>
+      <!-- PRICE -->
+      <div class="product-price-group">
+        <small class="text-muted">{{ product.price | currency:'SEK ': 'symbol' }}</small>
+      </div>
+    </div>
+  </div>
+  <!-- HOW MANY ITEMS IN STOCK -->
+  <div class="product-stock-group">
+    <div class="card-footer">
+      {{ product.stock | currency:'IN STOCK: ' }}
+    </div>
+  </div>
+
+  <!-- OLD CODE -->
+  <!--
+<div class="card" *ngIf="product.title" style="width: 15rem;">
   <img class="card-img-top" [src]="product.imageUrl" alt="image not found">
     <div class="card-body">
       <h4 class="card-title">{{ product.title }}</h4>
@@ -30,3 +75,4 @@
       </div>
     </div>
 </div>
+-->
