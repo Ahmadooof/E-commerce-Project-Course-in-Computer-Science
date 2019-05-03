@@ -26,47 +26,47 @@ import { AuthGuardService as AuthGuard } from '../auth-guard.service';
     CustomFormsModule,
     RouterModule.forRoot(
       [
-      {
-        path: 'admin/orders',
-        component: AdminOrdersComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      {
-        path: 'admin/courses/new',
-        component:  ProductFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      { //TODELETE
-        path: 'admin/courses/newCategory',
-        component:  CategoryFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      {
-        path: 'admin/courses/:id',
-        component:  ProductFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      {
-        path: 'admin/courses',
-        component: AdminCoursesComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-      {
-        path: 'admin/categories/newCategory',
-        component: CategoryFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      },
-      {
-        path: 'admin/categories/:id',
-        component: CategoryFormComponent,
-        canActivate:[AuthGuard,AdminAuthGuard]
-      },
-      {
-        path: 'admin/categories',
-        component: AdminCategoriesComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
-      },
-
+        {
+          path: 'admin/orders',
+          component: AdminOrdersComponent,
+          // AdminAuthGuard protects the route from non-admin users.
+          canActivate: [AuthGuard, AdminAuthGuard]
+        },
+        {
+          path: 'admin/courses/new',
+          component: ProductFormComponent,
+          canActivate: [AuthGuard, AdminAuthGuard]
+        },
+        { //TODELETE
+          path: 'admin/courses/newCategory',
+          component: CategoryFormComponent,
+          canActivate: [AuthGuard, AdminAuthGuard]
+        },
+        {
+          path: 'admin/courses/:id',
+          component: ProductFormComponent,
+          canActivate: [AuthGuard, AdminAuthGuard]
+        },
+        {
+          path: 'admin/courses',
+          component: AdminCoursesComponent,
+          canActivate: [AuthGuard, AdminAuthGuard]
+        },
+        {
+          path: 'admin/categories/newCategory',
+          component: CategoryFormComponent,
+          canActivate: [AuthGuard, AdminAuthGuard]
+        },
+        {
+          path: 'admin/categories/:id',
+          component: CategoryFormComponent,
+          canActivate: [AuthGuard, AdminAuthGuard]
+        },
+        {
+          path: 'admin/categories',
+          component: AdminCategoriesComponent,
+          canActivate: [AuthGuard, AdminAuthGuard]
+        },
       ]
     )
   ],

@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
 
-
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
@@ -22,16 +21,12 @@ import { HomeComponent } from './home/home.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminAuthGuardService as AdminAuthGuard } from './admin-auth-guard.service';
 import { UserService } from './user.service';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ProductsComponent } from './products/products.component';
-import { CategoryFormComponent } from './admin/category-form/category-form.component';
-import { AdminCategoriesComponent } from './admin/admin-categories/admin-categories.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductCartComponent } from './products/product-cart/product-cart.component';
 import { AdminModule } from './admin/admin.module';
-import { SearchComponent } from './search/search.component';
 import { FileLinkService } from './file-link.service';
 
 @NgModule({
@@ -45,7 +40,6 @@ import { FileLinkService } from './file-link.service';
     MyOrdersComponent,
     ProductsComponent,
     ProductCartComponent,
-    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +54,7 @@ import { FileLinkService } from './file-link.service';
       {path: 'shop', component: ShopComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
-
+      
       {
         path: 'my/orders',
         component: MyOrdersComponent,

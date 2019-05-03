@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({

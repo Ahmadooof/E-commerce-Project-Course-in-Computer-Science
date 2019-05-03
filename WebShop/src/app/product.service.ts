@@ -1,66 +1,50 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireStorage} from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { map } from 'rxjs/operators';
 import { Product } from './models/product';
-/**
- * CRUD courses
- */
+
+// CRUD courses
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  myArray : Product[] = [];
+  myArray: Product[] = [];
   products: Product[] = [];
   category: any;
   filterProducts: Product[];
   constructor(private db: AngularFireDatabase, private af: AngularFireStorage) { }
 
-  create(product){
+  create(product) {
     return this.db.list('/products').push(product);
   }
 
   getAll() {
     return this.db.list('/products', ref => (ref.orderByChild('name')))
-    .snapshotChanges().pipe(
-      map(actions => 
-        actions.map(a => ({ key: a.key, ...a.payload.val() } as Product ))
-      )
-    );
+      .snapshotChanges().pipe(
+        map(actions =>
+          actions.map(a => ({ key: a.key, ...a.payload.val() } as Product))
+        )
+      );
   }
 
-  getAllTest(){
-    this.db.list('/products', ref => (ref.orderByChild('name')))
-    .snapshotChanges().pipe(
-      map(actions => 
-        actions.map(a => 
-          this.myArray = actions.map(a => ({ key: a.key, ...a.payload.val() } as Product ))
-        )
-      )
-    );
-    console.log("CUAK");    
-  }
-  
-  wtf(){
-    this.getAllTest();
-    return this.myArray
-  }
   /**
    * OBS This is the part that does not get an actual object from DB
    */
   get(courseID) {
-    return this.db.object('/products/'+ courseID);   
+    return this.db.object('/products/' + courseID);
   }
 
-  updateProduct(id, product){
+  updateProduct(id, product) {
     return this.db.object('/products/' + id).update(product);
   }
 
-  deleteProduct(id){
+  deleteProduct(id) {
     return this.db.object('/products/' + id).remove();
   }
 
-  uploadFile(){
+  uploadFile() {
     return this.af;
   }
+
 }

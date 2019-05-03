@@ -1,45 +1,33 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from '../product.service';
 import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import 'rxjs/add/operator/switchMap';
-import { map } from 'rxjs/operators';
 import { ShoppingCartService } from '../shopping-cart.service';
-import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
-import { Subscribable, Subscription } from 'rxjs';
-import { FileLinkService } from '../file-link.service';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit, OnDestroy{
-  
-  subscribtion:Subscription;
-  cart:any;
-  products$;
+export class ProductsComponent implements OnInit, OnDestroy {
+  subscribtion: Subscription;
+  cart: any;
   categories$;
-  links$;
   category: string;
   filterProducts: Product[] = [];
   products: Product[] = [];
-  mycat: {
-    key: string,
-    title: string,
-  }
-
 
   constructor(
     route: ActivatedRoute,
     productService: ProductService,
     categoryService: CategoryService,
     private cartService: ShoppingCartService) {
-      this.categories$ = categoryService.getAll();
+    this.categories$ = categoryService.getAll();
 
-      productService                         
+    productService
       .getAll()
       .switchMap(products => {
         this.products = products;
@@ -47,24 +35,25 @@ export class ProductsComponent implements OnInit, OnDestroy{
       })
       .subscribe(params => {
         this.category = params.get('category');
-        
-        this.filterProducts = (this.category ) ? 
-          this.products.filter(p => p.category === this.category) : 
+
+        this.filterProducts = (this.category) ?
+          this.products.filter(p => p.category === this.category) :
           this.products;
       });
 
-      productService.getAll().subscribe(p => this.filterProducts = this.products = p);
+    productService.getAll().subscribe(p => this.filterProducts = this.products = p);
 
   }
-//Filter by search bar
-  filter(query : string){
-    this.filterProducts = (query) ? 
-    this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase()) && this.categoryCheck(p.category) ) :
-    this.products;
+  //Filter by search bar
+  filter(query: string) {
+    this.filterProducts = (query) ?
+      this.products.filter(p =>
+        p.title.toLowerCase().includes(query.toLowerCase()) &&
+        this.categoryCheck(p.category)) : this.products;
   }
 
-  categoryCheck(courseCategory: string){
-    return courseCategory  === this.category ||  !this.category;
+  categoryCheck(courseCategory: string) {
+    return courseCategory === this.category || !this.category;
   }
 
   async ngOnInit() {
@@ -73,7 +62,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscribtion.unsubscribe();
   }
 
