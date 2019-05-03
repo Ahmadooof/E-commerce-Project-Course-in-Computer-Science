@@ -8,7 +8,6 @@ const routes: Routes = [ {path:'shop', component: ShopComponent},
                          {path:'shopping-cart', component: ShoppingCartComponent},
                          {path:'login' , component: LoginComponent}];
                          
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

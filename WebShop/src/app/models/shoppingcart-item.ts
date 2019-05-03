@@ -4,5 +4,4 @@ export class ShoppingCartItem{
     product : Product;
     quantity: number;
     price : number;
-
 }

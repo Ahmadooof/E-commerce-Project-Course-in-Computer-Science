@@ -8,24 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-courses.component.css']
 })
 export class AdminCoursesComponent implements OnInit {
-
   courses$;
 
   constructor(
-    private productService: ProductService, 
+    private productService: ProductService,
     private router: Router) {
     this.courses$ = this.productService.getAll();
-   }
-  
-   OnEdit(id: string){
-    this.router.navigate(['/admin/courses/', id])
-   }
+  }
 
-   filter(query: string){ 
-     console.log(query);
-   }
- 
+  OnEdit(id: string) {
+    this.router.navigate(['/admin/courses/', id])
+  }
+
+  filter(query: string) {
+    console.log(query);
+  }
+
   ngOnInit() {
+
   }
 
 }

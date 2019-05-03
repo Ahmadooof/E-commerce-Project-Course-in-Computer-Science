@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryService } from '../../category.service';
+
 @Component({
   selector: 'app-admin-categories',
   templateUrl: './admin-categories.component.html',
@@ -11,17 +12,16 @@ export class AdminCategoriesComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
-    private router: Router
-  ) { 
+    private router: Router) {
     this.categories$ = categoryService.getAll();
   }
 
-  OnEdit(id: string){
+  OnEdit(id: string) {
     this.router.navigate(['/admin/categories/', id])
-
   }
-  
+
   ngOnInit() {
+
   }
 
 }

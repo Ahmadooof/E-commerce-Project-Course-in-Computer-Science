@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AdminAuthGuardService implements CanActivate {
   path: import("@angular/router").ActivatedRouteSnapshot[];
   route: import("@angular/router").ActivatedRouteSnapshot;
@@ -19,4 +18,5 @@ export class AdminAuthGuardService implements CanActivate {
     return this.auth.appUser$
       .map(appUser => appUser.isAdmin);
   }
+  
 }

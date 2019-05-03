@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import 'rxjs/add/operator/take';
 import { Observable } from 'rxjs';
-import { promise } from 'protractor';
 import { shoppingCart } from './models/shopping-cart';
 import { Product } from './models/product';
 import 'rxjs/add/operator/map';
@@ -25,14 +24,13 @@ export class ShoppingCartService {
     let cartId = await this.getOrCreateCartId();
     this.db.object('/shopping-carts/' + cartId + '/items/').remove();
   }
-  
 
   async getCart(): Promise<Observable<shoppingCart>> {
     let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId).valueChanges()
       .pipe(map(x => new shoppingCart(x)));
   }
-  
+
   private async getOrCreateCartId(): Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if (cartId)
@@ -68,4 +66,5 @@ export class ShoppingCartService {
         item$$.update({ quantity: (item.quantity) + change });
     });
   }
+
 }

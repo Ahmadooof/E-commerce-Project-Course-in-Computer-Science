@@ -10,6 +10,7 @@ export class AdminOrdersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

@@ -15,15 +15,15 @@ export class CategoryFormComponent implements OnInit {
   categories$;
   category = {};
   id;
+
   constructor(
     private categoryService: CategoryService,
-    private route:ActivatedRoute,
-    private router: Router
-    ) {
+    private route: ActivatedRoute,
+    private router: Router) {
     this.categories$ = this.categoryService.getAll();
     this.id = this.route.snapshot.paramMap.get('id');
 
-    if(this.id){
+    if (this.id) {
       console.log(">>>>ID: " + this.id);
       this.categoryService.get(this.id)
         .valueChanges()
@@ -33,13 +33,11 @@ export class CategoryFormComponent implements OnInit {
   }
 
   save(categories) {
-    if(this.id){
+    if (this.id) {
       this.categoryService.update(this.id, categories);
     } else {
       this.categoryService.create(categories);
     }
-
-    
     this.router.navigate(['/admin/categories']);
   }
 
@@ -48,11 +46,14 @@ export class CategoryFormComponent implements OnInit {
     this.categoryService.delete(this.id);
     this.router.navigate(['/admin/categories']);
   }
-  back(){
+
+  back() {
     if (!confirm('Go back to categories without saving?')) return;
     this.router.navigate(['/admin/categories']);
   }
+
   ngOnInit() {
+
   }
 
 }
