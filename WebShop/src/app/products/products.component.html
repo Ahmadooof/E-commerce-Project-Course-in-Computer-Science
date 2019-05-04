@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row mb-4 shadow-sm">
 
   <!-- CATEGORY COLUMN -->
   <div class="col-3">
     <!-- SEARCH ICON UTF-8 -->
-    <div class="input-group">
+    <div class="input-group mb-4 shadow-sm">
       <div class="input-group-prepend">
           <span class="input-group-text">Ϙ</span>
       </div>
@@ -19,7 +19,7 @@
     </div>
     <hr>
     <!-- DISPLAY CATEGORIES -->
-    <div class="list-group">
+    <div class="list-group mb-4 shadow-sm">
       <a class="list-group-item list-group-item-action" 
       [class.active]="!category" 
       routerLink="/">
@@ -42,7 +42,7 @@
       <!--<ng-container *ngFor="let p of products$ | async"> -->
         <ng-container *ngFor="let p of filterProducts">
           <div class="col">
-            <product-cart [product] = "p" [shopping-cart]="cart" [link]="p.link" [hasLink] = "p.hasLink"></product-cart>
+            <product-card [product] = "p" [shopping-cart]="cart" [link]="p.link" [hasLink] = "p.hasLink"></product-card>
           </div>
         </ng-container>
       </div>
