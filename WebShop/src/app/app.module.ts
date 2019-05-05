@@ -29,6 +29,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
 import { AdminModule } from './admin/admin.module';
 import { FileLinkService } from './file-link.service';
 import { ProductPageComponent } from './products/product-page/product-page.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ProductPageComponent } from './products/product-page/product-page.compo
     ProductsComponent,
     ProductCardComponent,
     ProductPageComponent,
+    ProductQuantityComponent,
   ],
   imports: [
     BrowserModule,
