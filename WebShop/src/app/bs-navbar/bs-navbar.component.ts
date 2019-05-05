@@ -3,7 +3,7 @@ import { AuthService } from '../auth.service';
 import { AppUser } from '../models/app-user';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { Observable } from 'rxjs';
-import { shoppingCart } from '../models/shopping-cart';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'bs-navbar',
@@ -12,7 +12,7 @@ import { shoppingCart } from '../models/shopping-cart';
 })
 export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
-  cart$ : Observable<shoppingCart>;
+  cart$ : Observable<ShoppingCart>;
 
   constructor(private auth: AuthService, private cartService: ShoppingCartService) { }
 

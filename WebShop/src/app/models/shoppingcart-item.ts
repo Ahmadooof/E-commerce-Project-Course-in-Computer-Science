@@ -1,7 +1,8 @@
 import { Product } from './product';
 
 export class ShoppingCartItem{
-    product : Product;
-    quantity: number;
-    price : number;
+  key: string;
+  product : Product;
+  quantity: number;
+  price : number;
 }
