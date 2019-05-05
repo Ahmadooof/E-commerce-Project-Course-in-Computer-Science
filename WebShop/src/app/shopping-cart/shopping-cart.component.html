@@ -1,0 +1,49 @@
+<h1>Shopping cart</h1>
+
+<ng-container *ngIf="cart$ | async as cart">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let productId of cart.productIds">
+        <td>
+          {{ cart.items[productId].product.title }}
+        </td>
+        <td>
+          {{ cart.items[productId].quantity }}
+        </td>
+        <td>
+          {{ cart.items[productId].product.price }}
+        </td>
+        <td>
+          {{ cart.items[productId].product.price * cart.items[productId].quantity  }}
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th> {{ cart.TotalPrice }} </th>
+    </tfoot>
+  </table>
+
+  <table>
+    <tr>
+      <th>
+        <button (click)="clearCart()" class="btn btn-danger btn-sm">Clear Shopping Cart</button>
+      </th>
+      <th>
+        <button (click)="checkout()" class = "btn btn-primary btn-sm">Go To Checkout</button>
+      </th> 
+    </tr>
+  </table>
+</ng-container>

@@ -1,0 +1,75 @@
+<p>
+  <a class="nav-link" routerLink="/checkout"></a>
+</p>
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <!--NAME-->
+      <div class="form-group">
+        <label for="name">Full Name</label>
+
+        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+          <div *ngIf="name.errors.required">You must enter your name</div>
+        </div>
+      </div>
+      
+      <!--CARD TYPE-->
+      <div class="form-group">
+        <label for="category">Card Type</label>
+        <select #category="ngModel" [(ngModel)]="course.category" name="category" 
+        id="category" class="form-control" required>
+          <option value="">Pick a Card Type</option>
+          <option>Master Card</option>
+          <option>Visa</option>
+          <option>American Express</option>
+        </select>
+      </div>
+      <div class="form-group"></div>
+      <!--ADDRESS-->
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input #title="ngModel" [(ngModel)]="course.address" name="address" id="address" 
+        type="text" class="form-control" required [rangeLength]="[5,40]">
+
+        <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+          <div *ngIf="address.errors.required">You must enter your address</div>
+        </div>
+      </div>
+      <!--CARD DETAILS-->
+      <div class="form-group">
+        <label for="cardNumber">Card Number</label>
+        <input #cardNumber="ngModel" [(ngModel)]="course.cardNumber" name="cardNumber" id="cardNumber"
+         class="form-control" required [min]="0">
+
+        <div class="alert alert-danger" *ngIf="cardNumber.touched && cardNumber.invalid">
+          <div *ngIf="cardNumber.errors.required">You must provide your Card number.</div>
+          <div *ngIf="cardNumber.errors.min">The card number cannot be negative.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cardNumber">CVV</label>
+        <input #cardNumber="ngModel" [(ngModel)]="course.cardNumber" name="cardNumber" id="cardNumber"
+        class="form-control" required [min]="0">
+
+        <div class="alert alert-danger" *ngIf="cardNumber.touched && cardNumber.invalid">
+          <div *ngIf="cardNumber.errors.required">You must provide a valid CVV.</div>
+          <div *ngIf="cardNumber.errors.min">The CVV number cannot be negative.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cardNumber">Expiration Date</label>
+        <input [(ngModel)]="course.cardNumber" name="cardNumber" id="cardNumber" 
+        type="date" class="form-control">
+
+        <div class="alert alert-danger" *ngIf="cardNumber.touched && cardNumber.invalid">
+          <div *ngIf="cardNumber.errors.required">You must provide the expiration date of the card.</div>
+          <div *ngIf="cardNumber.errors.min">The expiration date cannot be negative.</div>
+        </div>
+      </div>
+      <!--BUTTONS!-->
+      <button [disabled]="!f.valid" (click)="placeOrder()" class="btn btn-primary">Place Order</button>
+    </form>
+  </div>
+</div>
