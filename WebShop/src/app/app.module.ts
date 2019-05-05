@@ -4,6 +4,7 @@ import { AngularFireModule} from '@angular/fire';
 import { AngularFireDatabaseModule} from '@angular/fire/database';
 import { AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -53,6 +54,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    AngularFirestoreModule,
     RouterModule.forRoot([
       {path: '', component: ProductsComponent},
       {path: 'shop', component: ShopComponent},
