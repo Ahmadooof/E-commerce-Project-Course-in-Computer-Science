@@ -70,6 +70,9 @@
 </div>
 <div class="medium-6 large-5 columns">
 <h3>{{ (myProd$ | async).title }}</h3>
+<!-- this is how you display the download link for the cloud material
+add later in new HTML template but don't change the TS file-->
+<a href="{{downloadLink}}" *ngIf="downloadLink!=null">Download cloud material</a>
 <p></p>
 
 <div class="row">
