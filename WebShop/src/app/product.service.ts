@@ -31,7 +31,7 @@ export class ProductService {
   /**
    * OBS This is the part that does not get an actual object from DB
    */
-  get(courseID) {
+  get(courseID: string) {
     return this.db.object('/products/' + courseID);
   }
 

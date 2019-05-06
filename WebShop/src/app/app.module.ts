@@ -61,7 +61,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
       {
-        path: 'products/product-page',
+        path: 'products/:id',
         component: ProductPageComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
       },
