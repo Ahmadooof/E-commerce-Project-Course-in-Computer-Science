@@ -31,6 +31,9 @@ import { AdminModule } from './admin/admin.module';
 import { FileLinkService } from './file-link.service';
 import { ProductPageComponent } from './products/product-page/product-page.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { OrderService } from './order.service';
+import { checkoutComponent } from './checkout/checkout.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,8 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductCardComponent,
     ProductPageComponent,
     ProductQuantityComponent,
+    checkoutComponent,
+    OrderSuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +65,9 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
       {path: 'shop', component: ShopComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
+      
+      {path: 'check-out/order-success', component: OrderSuccessComponent},
+
       {
         path: 'products/:id',
         component: ProductPageComponent,
@@ -69,6 +77,10 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
         path: 'my/orders',
         component: MyOrdersComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      },
+      {
+        path: 'check-out',
+        component: checkoutComponent,
       },
     ]),
     NgbModule.forRoot(),
@@ -83,6 +95,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductService,
     ShoppingCartService,
     FileLinkService,
+    OrderService,
   ],
   bootstrap: [AppComponent]
 })
