@@ -10,6 +10,15 @@
   <div class="card-body">
       <!-- PRODUCT TITLE -->
     <h4 class="card-title" style="height: 2.5em;">{{ product.title }}</h4>
+    <!-- PRODUCT STAR RATING-->
+    <div class="rating-static">
+      <ngb-rating [(rate)]="product.rating" [readonly]="true">
+        <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100" 
+          [class.bad]="index < 3">&#9733;</span>
+        </ng-template>
+      </ngb-rating> 
+    </div>
     <!-- PRODUCT DESCRIPTION -->
     <p class="card-text">SOME RANDOM TEXT THAT WILL BE REPLACED
       ONCE WE GET OUR PRODUCT PAGE ONLINE</p> <!--{{ product.description }}-->
