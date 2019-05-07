@@ -2,6 +2,7 @@
 
 <ng-container *ngIf="cart$ | async as cart">
 
+
   <table class="table">
     <thead>
     <tr>
@@ -43,5 +44,8 @@
       <th> {{ cart.TotalPrice }} </th>
     </tfoot>
   </table>
-  <button (click)="clearCart()" class="btn btn-danger btn-sm">Clear Shopping Cart</button>
+  <a  routerLink="/check-out"
+  class="btn btn-primary">Check Out</a>
+
+  <button style="margin:0em 0em 0em 2em" (click)="clearCart()" class="btn btn-danger btn">Clear Shopping Cart</button>
 </ng-container>
