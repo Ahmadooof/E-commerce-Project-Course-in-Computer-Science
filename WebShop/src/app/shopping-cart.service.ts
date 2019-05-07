@@ -60,8 +60,10 @@ export class ShoppingCartService {
     let item$: Observable<any> = this.db.object('/shopping-carts/' + cartId + '/items/' + product.key).valueChanges();
     let item$$ = this.getItem(cartId, product.key);
     item$.take(1).subscribe(item => {
-      if (item === null)
-        item$$.set({ product: product, quantity: change });
+     if (item === null)
+     item$$.update({ product: product, quantity: change });
+     if(item.quantity === 1 && change === -1) {
+       item$$.remove();}
       else
         item$$.update({ quantity: (item.quantity) + change });
     });
