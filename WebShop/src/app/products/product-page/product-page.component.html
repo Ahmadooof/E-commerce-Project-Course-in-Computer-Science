@@ -8,8 +8,6 @@
   <div class="card-body">
 
     <h3 class="card-title">{{ myProduct.title }}</h3>
-    <p class="card-text">SOME RANDOM TEXT THAT WILL BE REPLACED
-        ONCE WE GET OUR PRODUCT PAGE ONLINE</p> <!--{{ product.description }}-->  
   
     <div class="rating-static">
       <ngb-rating [(rate)]="myProduct.rating" [readonly]="true">
@@ -37,8 +35,6 @@
                 [class.bad]="index < 3">&#9733;</span>
               </ng-template>
           </ngb-rating>
-          <p class="card-text">TO DELETE Rating: {{ myProduct.rating }}</p>
-          <p class="card-text">TO DELETE Selected {{selected}}</p>
           <button class="btn btn-sm btn-outline-{{readOnly ? 'danger' : 'success'}}" 
           (click)=onClic(selected)>{{ readOnly ? "Voted" : "Vote"}}</button>
       </div>
