@@ -19,6 +19,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   category: string;
   filterProducts: Product[] = [];
   products: Product[] = [];
+  userInput = "";
 
   constructor(
     route: ActivatedRoute,
@@ -35,21 +36,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
       })
       .subscribe(params => {
         this.category = params.get('category');
-
-        this.filterProducts = (this.category) ?
-          this.products.filter(p => p.category === this.category) :
-          this.products;
+        this.filterProducts = this.courseFilter();
       });
 
     productService.getAll().subscribe(p => this.filterProducts = this.products = p);
 
   }
-  //Filter by search bar
-  filter(query: string) {
-    this.filterProducts = (query) ?
-      this.products.filter(p =>
-        p.title.toLowerCase().includes(query.toLowerCase()) &&
-        this.categoryCheck(p.category)) : this.products;
+ 
+
+  //KeyUp
+  searchQuery(query: string) {
+    this.userInput = query;
+    this.filterProducts = this.courseFilter();
+  }
+
+  courseFilter(){    
+    return this.products.filter(p =>
+      p.title.toLowerCase().includes(
+        this.userInput.toLowerCase()) && this.categoryCheck(p.category));
   }
 
   categoryCheck(courseCategory: string) {
