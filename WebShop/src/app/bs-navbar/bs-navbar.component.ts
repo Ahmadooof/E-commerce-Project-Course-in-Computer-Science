@@ -11,7 +11,11 @@ import { ShoppingCart } from '../models/shopping-cart';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent implements OnInit {
-  appUser: AppUser;
+  appUser: AppUser = {
+    name: "",
+    email: "",
+    isAdmin: false,
+  };
   cart$ : Observable<ShoppingCart>;
 
   constructor(private auth: AuthService, private cartService: ShoppingCartService) { }

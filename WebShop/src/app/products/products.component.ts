@@ -37,10 +37,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
       })
       .subscribe(params => {
         this.category = params.get('category');
-        this.filterProducts = this.courseFilter();
+        this.setCourseFilter();
       });
-
-    productService.getAll().subscribe(p => this.filterProducts = this.products = p);
 
   }
  
@@ -48,7 +46,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   //KeyUp
   searchQuery(query: string) {
     this.userSearch = query;
-    //this.filterProducts = this.courseFilter();
     this.setCourseFilter();
   }
 
@@ -61,9 +58,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
   categoryCheck(courseCategory: string) {
     return courseCategory === this.category || !this.category;
   }
+
   setCourseFilter(){
     this.filterProducts = this.courseFilter();
   }
+
+  
+
 /**
  * There is a bug in switch. If you put the value alone, it will 
  * fall to default.
@@ -80,19 +81,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.orderByNameAsc();
         break;
       case 3: 
-      this.orderByPriceDes();
-      break;
+        this.orderByPriceDes();
+        break;
       case 4: 
-      this.orderByPriceAsc();
-      break;
+        this.orderByPriceAsc();
+        break;
       case 5: 
-      this.orderByRatingDes();
-      break;
+        this.orderByRatingDes();
+        break;
       case 6: 
        this.orderByRatingAsc();
        break;
       default:
-      this.setCourseFilter();
+        this.setCourseFilter();
         break;
     }
     
