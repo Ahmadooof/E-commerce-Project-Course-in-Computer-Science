@@ -70,7 +70,7 @@ import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-c
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
       
-      {path: 'check-out/order-success/:id', component: OrderSuccessComponent},
+      {path: 'order-success/:id', component: OrderSuccessComponent},
 
       {
         path: 'products/:id',
@@ -80,7 +80,7 @@ import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-c
       {
         path: 'my/orders',
         component: MyOrdersComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+        canActivate: [AuthGuard]        // let the users also see thier orders.
       },
       {
         path: 'check-out',
