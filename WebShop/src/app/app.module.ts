@@ -32,8 +32,10 @@ import { FileLinkService } from './file-link.service';
 import { ProductPageComponent } from './products/product-page/product-page.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { OrderService } from './order.service';
-import { checkoutComponent } from './checkout/checkout.component';
+import { CheckOutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 
 @NgModule({
   declarations: [
@@ -48,8 +50,10 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     ProductCardComponent,
     ProductPageComponent,
     ProductQuantityComponent,
-    checkoutComponent,
-    OrderSuccessComponent
+    CheckOutComponent,
+    OrderSuccessComponent,
+    ShippingFormComponent,
+    ShoppingCartSummaryComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,7 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
       
-      {path: 'check-out/order-success', component: OrderSuccessComponent},
+      {path: 'check-out/order-success/:id', component: OrderSuccessComponent},
 
       {
         path: 'products/:id',
@@ -80,7 +84,7 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
       },
       {
         path: 'check-out',
-        component: checkoutComponent,
+        component: CheckOutComponent,
       },
     ]),
     NgbModule.forRoot(),

@@ -8,18 +8,22 @@ import {Product} from '../models/product';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
+  
   cart$;
-  private product: Product;
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(
+    private cartService: ShoppingCartService
+  ) { }
 
   async ngOnInit() {
     this.cart$ = await this.cartService.getCart();
   }
 
-  clearCart(){
+  clearCart() {
     this.cartService.clearCart();
   }
-
-
+  removeItem(item: Product) {
+    this.cartService.removeItem(item);
+  }
 }
+
