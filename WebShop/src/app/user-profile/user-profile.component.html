@@ -1,0 +1,148 @@
+<div class="form-row">
+  <div class="col-md-6" style="padding: 2em;">
+    <h2>Some Information</h2>
+    <p>Filler paragraphs Filler paragraphs Filler paragraphs Filler paragraphs
+      Filler paragraphs Filler paragraphs Filler paragraphs Filler paragraphs
+      Filler paragraphs Filler paragraphs Filler paragraphs Filler paragraphs
+      Filler paragraphs Filler paragraphs Filler paragraphs Filler paragraphs
+    </p>
+  </div>
+  <!-- BILLING ADDRESS COLUMN -->
+  <div class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
+    <h2>Billing Address</h2>
+    <hr>
+
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input 
+            #name="ngModel" 
+            name="name" 
+            [(ngModel)]="user.name" 
+            type="text" 
+            class="form-control" 
+            required
+            placeholder="First name">
+
+          <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+            <div *ngIf="name.errors.required">First name is required.</div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <input 
+              #name="ngModel" 
+              name="surname" 
+              [(ngModel)]="user.surname" 
+              type="text" 
+              class="form-control" 
+              required
+              placeholder="Last name">
+
+            <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+              <div *ngIf="name.errors.required">Last name is required.</div>
+            </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputAddress">Adress</label>
+        <input 
+          #address="ngModel" 
+          name="address" 
+          [(ngModel)]="user.address" 
+          type="text"
+          class="form-control" 
+          placeholder="Storgatan 82D, LGH 1812" 
+          required>
+
+        <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+          <div *ngIf="address.errors.required">Address is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputAddress2">Address 2</label>
+        <input 
+          #address2="ngModel" 
+          name="address2" 
+          [(ngModel)]="user.address2" 
+          type="text"
+          class="form-control" 
+          placeholder="Apartment, studio or floor" 
+          required>
+  
+        <div class="alert alert-danger" *ngIf="address2.touched && address2.invalid">
+          <div *ngIf="address2.errors.required">Address 2 is required.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input 
+            #city="ngModel" 
+            name="city" 
+            [(ngModel)]="user.city" 
+            type="text" 
+            class="form-control" 
+            required
+            placeholder="Växjö">
+      
+          <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+            <div *ngIf="city.errors.required">City is required.</div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputState">State</label>
+          <input 
+            #state="ngModel" 
+            name="state" 
+            [(ngModel)]="user.state" 
+            type="text"
+            class="form-control" 
+            required
+            placeholder="Kronoberg">
+      
+          <div class="alert alert-danger" *ngIf="state.touched && state.invalid">
+            <div *ngIf="state.errors.required">State is required.</div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="inputZip">Zip</label>
+          <input 
+            #zip="ngModel" 
+            name="zip" 
+            [(ngModel)]="user.zip" 
+            type="text" 
+            class="form-control" 
+            required
+            placeholder="352 46">
+      
+          <div class="alert alert-danger" *ngIf="zip.touched && zip.invalid">
+            <div *ngIf="zip.errors.required">Zip is required.</div>
+          </div>
+        </div>
+      </div>
+<!--
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Save information for future orders?
+          </label>
+        </div>
+      </div>
+ -->
+      <button type="submit" (click)="submitAddress()" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div> 
+<!-- If address saved -->
+<!--<div *ngIf="addressSaved = true" class="card col-md-6" style="padding: 2em;">
+    <h2>Billing Address Saved</h2>
+    <hr>
+    <button type="edit" (click)="editAddress()" class="btn btn-primary">Edit</button>
+</div>-->

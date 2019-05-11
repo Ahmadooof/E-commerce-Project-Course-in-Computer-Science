@@ -34,6 +34,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
 import { OrderService } from './order.service';
 import { checkoutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     ProductPageComponent,
     ProductQuantityComponent,
     checkoutComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,11 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
         path: 'products/:id',
         component: ProductPageComponent,
         canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+      },
+      {
+        path: 'my/profile',
+        component: UserProfileComponent,
+        canActivate: [AuthGuard, AdminAuthGuard]
       },
       {
         path: 'my/orders',

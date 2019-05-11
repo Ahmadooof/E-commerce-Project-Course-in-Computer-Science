@@ -24,4 +24,18 @@ export class UserService {
     return this.db.object('/users/' + uid).valueChanges();
   }
 
+  // Store users Address in Firebase
+  saveAddress(user, address) {
+    return this.db.list('/users/' + user).push(address);
+  }
+
+  // Get the users address object from Firebase
+  getAddress(uid: string): Observable<any> {
+    return this.db.object('/users/' + uid + '/address').valueChanges();
+  }
+
+  /*updateAddress(userId, address) {
+    return this.db.object('/users/' + userId + '/address').update(address);
+  }*/
+
 }
