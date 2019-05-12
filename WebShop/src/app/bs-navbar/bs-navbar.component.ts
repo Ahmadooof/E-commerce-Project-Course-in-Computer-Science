@@ -1,3 +1,4 @@
+import { RouterModule, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { AppUser } from '../models/app-user';
@@ -18,7 +19,9 @@ export class BsNavbarComponent implements OnInit {
   };
   cart$ : Observable<ShoppingCart>;
 
-  constructor(private auth: AuthService, private cartService: ShoppingCartService) { }
+  constructor(private auth: AuthService, 
+    private cartService: ShoppingCartService,
+    private router: Router) { }
 
   async ngOnInit() {
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
@@ -27,6 +30,7 @@ export class BsNavbarComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+    this.router.navigate(["/"]);
   }
   
 }

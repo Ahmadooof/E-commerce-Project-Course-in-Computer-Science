@@ -20,7 +20,6 @@ import { AuthService } from './auth.service';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { AdminAuthGuardService as AdminAuthGuard } from './admin-auth-guard.service';
 import { UserService } from './user.service';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
@@ -32,8 +31,10 @@ import { FileLinkService } from './file-link.service';
 import { ProductPageComponent } from './products/product-page/product-page.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { OrderService } from './order.service';
-import { checkoutComponent } from './checkout/checkout.component';
+import { CheckOutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
@@ -49,8 +50,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ProductCardComponent,
     ProductPageComponent,
     ProductQuantityComponent,
-    checkoutComponent,
+    CheckOutComponent,
     OrderSuccessComponent,
+    ShippingFormComponent,
+    ShoppingCartSummaryComponent,
     UserProfileComponent
   ],
   imports: [
@@ -68,12 +71,16 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
       
-      {path: 'check-out/order-success', component: OrderSuccessComponent},
+      {path: 'order-success/:id', component: OrderSuccessComponent},
 
       {
         path: 'products/:id',
-        component: ProductPageComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+        component: ProductPageComponent
+      },
+      {
+        path: 'my/profile',
+        component: UserProfileComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'my/profile',
@@ -83,11 +90,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       {
         path: 'my/orders',
         component: MyOrdersComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+        canActivate: [AuthGuard]
       },
       {
         path: 'check-out',
-        component: checkoutComponent,
+        component: CheckOutComponent,
       },
     ]),
     NgbModule.forRoot(),
@@ -96,7 +103,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
   providers: [
     AuthService,
     AuthGuard,
-    AdminAuthGuard,
     UserService,
     CategoryService,
     ProductService,

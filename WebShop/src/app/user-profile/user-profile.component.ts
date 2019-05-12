@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
 import { Subscription } from 'rxjs/Subscription';
+<<<<<<< HEAD
 import { Observable } from 'rxjs';
+=======
+>>>>>>> 5be927ecc38e8268da3fa6c30cd73b171b37fd85
 
 @Component({
   selector: 'app-user-profile',

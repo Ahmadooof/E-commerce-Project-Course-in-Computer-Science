@@ -34,8 +34,4 @@ export class UserService {
     return this.db.object('/users/' + uid + '/address').valueChanges();
   }
 
-  hasAddress(userId) {
-    return this.db.object('/users/' + userId + '/address');
-  }
-
 }
