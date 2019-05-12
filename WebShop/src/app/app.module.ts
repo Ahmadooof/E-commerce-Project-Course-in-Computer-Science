@@ -20,7 +20,6 @@ import { AuthService } from './auth.service';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { AdminAuthGuardService as AdminAuthGuard } from './admin-auth-guard.service';
 import { UserService } from './user.service';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
@@ -70,13 +69,12 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 
       {
         path: 'products/:id',
-        component: ProductPageComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+        component: ProductPageComponent
       },
       {
         path: 'my/orders',
         component: MyOrdersComponent,
-        canActivate: [AuthGuard, AdminAuthGuard] // AdminAuthGuard protects the route from non-admin users.
+        canActivate: [AuthGuard]
       },
       {
         path: 'check-out',
@@ -89,7 +87,6 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
   providers: [
     AuthService,
     AuthGuard,
-    AdminAuthGuard,
     UserService,
     CategoryService,
     ProductService,
