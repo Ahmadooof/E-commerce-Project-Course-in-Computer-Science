@@ -7,4 +7,5 @@ export interface Product {
     stock: number;
     rating: number;
     numberOfVotes: number;
+    quantity: number;
 }
