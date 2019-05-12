@@ -18,6 +18,8 @@
       />
     </div>
     <hr>
+    
+
     <!-- DISPLAY CATEGORIES -->
     <div class="list-group mb-4 shadow-sm">
       <a class="list-group-item list-group-item-action" 
@@ -33,10 +35,30 @@
         {{c.title}}
       </a>
     </div>
+
+    <!-- FILTERS -->
+    <div class="input-group mb-3">
+        
+        <select class="custom-select" 
+          id="inputGroupSelect01"
+          [ngModel] = "selectedOrdering"
+          (ngModelChange)="selectChanges($event)">
+          <option value="0" selected disabled >Filter by</option>
+          <option value="1">Name (A-Z)</option>
+          <option value="2">Name (Z-A)</option>
+          <option value="3">Price &dArr;</option>
+          <option value="4">Price &uArr;</option>
+          <option value="5">Rating &dArr;</option>
+          <option value = "6">Rating &uArr;</option>
+          <option value = "">No Filter </option>
+        </select>
+      </div>
+
   </div>
 
   <!-- PRODUCTS COLUMN -->
   <div class="col">
+    
     <!--Right colum card -->
     <div class="row">
       <!--<ng-container *ngFor="let p of products$ | async"> -->

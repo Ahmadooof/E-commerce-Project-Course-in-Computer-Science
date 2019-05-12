@@ -53,16 +53,15 @@ export class ProductPageComponent implements OnInit {
     }
 
   rate(rating: number){
-    if(this.myProduct.numberOfVotes == null){
+    if(this.myProduct.numberOfVotes>0){
+      const newRating = (this.myProduct.rating*this.myProduct.numberOfVotes + rating)/(this.myProduct.numberOfVotes + 1);
+      this.myProduct.numberOfVotes = this.myProduct.numberOfVotes + 1;
+      this.myProduct.rating = newRating;
+    } else {
       this.myProduct.numberOfVotes = 1;
-      this.myProduct.rating = rating;
-      return;
+      this.myProduct.rating = rating;      
     }
-
-    const newRating = (this.myProduct.rating*this.myProduct.numberOfVotes + rating)/(this.myProduct.numberOfVotes + 1);
-    this.myProduct.numberOfVotes = this.myProduct.numberOfVotes + 1;
-    this.myProduct.rating = newRating;
-    this.ps.updateProduct(this.productID, this.myProduct);
+    this.ps.updateProduct(this.productID, this.myProduct);    
   }
 
  //If readonly false, rate and block rating

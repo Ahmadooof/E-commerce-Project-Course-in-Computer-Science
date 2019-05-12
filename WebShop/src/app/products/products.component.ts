@@ -19,7 +19,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   category: string;
   filterProducts: Product[] = [];
   products: Product[] = [];
-  userInput = "";
+  userSearch = "";
+  selectedOrdering = 0;
 
   constructor(
     route: ActivatedRoute,
@@ -36,29 +37,99 @@ export class ProductsComponent implements OnInit, OnDestroy {
       })
       .subscribe(params => {
         this.category = params.get('category');
-        this.filterProducts = this.courseFilter();
+        this.setCourseFilter();
       });
-
-    productService.getAll().subscribe(p => this.filterProducts = this.products = p);
 
   }
  
 
   //KeyUp
   searchQuery(query: string) {
-    this.userInput = query;
-    this.filterProducts = this.courseFilter();
+    this.userSearch = query;
+    this.setCourseFilter();
   }
 
   courseFilter(){    
     return this.products.filter(p =>
       p.title.toLowerCase().includes(
-        this.userInput.toLowerCase()) && this.categoryCheck(p.category));
+        this.userSearch.toLowerCase()) && this.categoryCheck(p.category));
   }
 
   categoryCheck(courseCategory: string) {
     return courseCategory === this.category || !this.category;
   }
+
+  setCourseFilter(){
+    this.filterProducts = this.courseFilter();
+  }
+
+  
+
+/**
+ * There is a bug in switch. If you put the value alone, it will 
+ * fall to default.
+ * Add a "+" before the value, and it will work as intended. 
+ * @param value 
+ * Input from select -> option 
+ */
+  selectChanges(value){
+    switch (+value) {
+      case 1:
+        this.orderByNameDes();
+        break;
+      case 2:
+        this.orderByNameAsc();
+        break;
+      case 3: 
+        this.orderByPriceDes();
+        break;
+      case 4: 
+        this.orderByPriceAsc();
+        break;
+      case 5: 
+        this.orderByRatingDes();
+        break;
+      case 6: 
+       this.orderByRatingAsc();
+       break;
+      default:
+        this.setCourseFilter();
+        break;
+    }
+    
+  }
+
+  orderByRatingDes(){
+    this.filterProducts  = this.courseFilter().sort(
+      (a,b) => b.rating-a.rating
+    );
+  }
+  orderByRatingAsc(){
+    this.filterProducts  = this.courseFilter().sort(
+      (a,b) => a.rating-b.rating
+    );
+  }
+  orderByNameDes(){
+    this.filterProducts  = this.courseFilter().sort(
+      (a,b) => {if(a.title < b.title) { return -1; }}
+    );
+  }
+  orderByNameAsc(){
+    this.filterProducts  = this.courseFilter().sort(
+      (a,b) => {if(a.title > b.title) { return -1; }}
+    );
+  }
+  orderByPriceDes(){
+    this.filterProducts = this.courseFilter().sort(
+      (a,b) => b.price-a.price
+    );
+  }
+  orderByPriceAsc(){
+    this.filterProducts = this.courseFilter().sort(
+      (a,b) => a.price-b.price
+    );
+  }
+  
 
   async ngOnInit() {
     this.subscribtion = (await this.cartService.getCart())
