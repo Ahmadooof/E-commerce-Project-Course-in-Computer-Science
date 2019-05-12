@@ -8,7 +8,7 @@
   <div *ngIf="!show" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
     <h2>Billing Address</h2>
     <hr>
-
+    <!-- FIRST NAME -->
     <form #f="ngForm">
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -26,7 +26,7 @@
             <div *ngIf="firstname.errors.required">First name is required.</div>
           </div>
         </div>
-
+        <!-- SURNAME -->
         <div class="form-group col-md-6">
             <input 
               #name="ngModel" 
@@ -43,7 +43,7 @@
             </div>
         </div>
       </div>
-
+      <!-- ADDRESS 1 -->
       <div class="form-group">
         <label for="inputAddress">Adress</label>
         <input 
@@ -60,7 +60,7 @@
           <div *ngIf="address.errors.required">Address is required.</div>
         </div>
       </div>
-
+      <!-- ADDRESS 2 -->
       <div class="form-group">
         <label for="inputAddress2">Address 2</label>
         <input 
@@ -77,7 +77,7 @@
           <div *ngIf="address2.errors.required">Address 2 is required.</div>
         </div>
       </div>
-
+      <!-- CITY -->
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputCity">City</label>
@@ -95,7 +95,7 @@
             <div *ngIf="city.errors.required">City is required.</div>
           </div>
         </div>
-
+        <!-- STATE -->
         <div class="form-group col-md-4">
           <label for="inputState">State</label>
           <input 
@@ -112,7 +112,7 @@
             <div *ngIf="state.errors.required">State is required.</div>
           </div>
         </div>
-
+      <!-- ZIP -->
         <div class="form-group col-md-2">
           <label for="inputZip">Zip</label>
           <input 
@@ -131,14 +131,89 @@
         </div>
       </div>
       <button (click)="submitAddress(f.value)" class="btn btn-primary">Submit</button>
-      <button (click)="editAddress(f.value)" class="btn btn-secondary" 
-        style="margin-left: 1em;">Edit</button> 
     </form>
   </div>
 
   <div *ngIf="show" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
-    <h2>Billing Address</h2>
+    <h2>Billing Address Saved!</h2>
     <hr>
-    <p>Billing Address Saved!</p>
+
+    <form #f="ngForm">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input disabled  
+            #firstname="ngModel" 
+            name="firstname" 
+            [(ngModel)]="address.firstname" 
+            id="firstname" 
+            type="text" 
+            class="form-control"
+            placeholder="{{address.firstname}}">
+        </div>
+        <div class="form-group col-md-6">
+          <input disabled  
+            #surname="ngModel" 
+            name="surname" 
+            [(ngModel)]="address.surname" 
+            id="surname" 
+            type="text" 
+            class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress1">Address 1</label>
+        <input disabled  
+            #address1="ngModel" 
+            name="address1" 
+            [(ngModel)]="address.address1" 
+            id="address1" 
+            type="text" 
+            class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="inputAddress2">Address 2</label>
+        <input disabled  
+            #address2="ngModel" 
+            name="address2" 
+            [(ngModel)]="address.address2" 
+            id="address2" 
+            type="text" 
+            class="form-control">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input disabled  
+            #city="ngModel" 
+            name="city" 
+            [(ngModel)]="address.city" 
+            id="city" 
+            type="text" 
+            class="form-control">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">State</label>
+          <input disabled  
+            #state="ngModel" 
+            name="state" 
+            [(ngModel)]="address.state" 
+            id="state" 
+            type="text" 
+            class="form-control">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Zip</label>
+          <input disabled 
+            #zip="ngModel" 
+            name="zip" 
+            [(ngModel)]="address.zip" 
+            id="zip" 
+            type="text" 
+            class="form-control">
+        </div>
+      </div>
+      <button class="btn btn-primary" routerLink="/">Edit</button>
+    </form>
   </div>
 </div>

@@ -78,7 +78,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       {
         path: 'my/profile',
         component: UserProfileComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'my/orders',

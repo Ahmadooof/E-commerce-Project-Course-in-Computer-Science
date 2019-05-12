@@ -1,4 +1,4 @@
-export interface Address {
+export interface BillingAddress {
   firstname: string;
   surname: string;
   address1: string;
