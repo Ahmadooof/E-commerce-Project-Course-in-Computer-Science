@@ -35,6 +35,7 @@ import { CheckOutComponent } from './checkout/checkout.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-c
     OrderSuccessComponent,
     ShippingFormComponent,
     ShoppingCartSummaryComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +76,11 @@ import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-c
       {
         path: 'products/:id',
         component: ProductPageComponent
+      },
+      {
+        path: 'my/profile',
+        component: UserProfileComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'my/orders',
