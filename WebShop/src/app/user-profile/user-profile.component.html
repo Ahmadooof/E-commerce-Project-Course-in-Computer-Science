@@ -1,3 +1,4 @@
+<h1></h1>
 <div class="row">
   <div class="col-md-6" style="padding: 2em;">
     <h2>EMPTY</h2>
@@ -52,7 +53,7 @@
           id="address1" 
           type="text"
           class="form-control" 
-          placeholder="Storgatan 82D, LGH 1812" 
+          placeholder="Storgatan 12A" 
           required>
 
         <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
@@ -69,7 +70,7 @@
           id="address2" 
           type="text"
           class="form-control" 
-          placeholder="Apartment, studio or floor" 
+          placeholder="LGH 1234"
           required>
   
         <div class="alert alert-danger" *ngIf="address2.touched && address2.invalid">
@@ -88,7 +89,7 @@
             type="text" 
             class="form-control" 
             required
-            placeholder="Växjö">
+            placeholder="">
       
           <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
             <div *ngIf="city.errors.required">City is required.</div>
@@ -105,7 +106,7 @@
             type="text"
             class="form-control" 
             required
-            placeholder="Kronoberg">
+            placeholder="">
       
           <div class="alert alert-danger" *ngIf="state.touched && state.invalid">
             <div *ngIf="state.errors.required">State is required.</div>
@@ -122,15 +123,16 @@
             type="text" 
             class="form-control" 
             required
-            placeholder="352 46">
+            placeholder="123-45">
       
           <div class="alert alert-danger" *ngIf="zip.touched && zip.invalid">
             <div *ngIf="zip.errors.required">Zip is required.</div>
           </div>
         </div>
       </div>
-      <button (click)="submitAddress(f.value)" class="btn btn-primary" 
-      routerLink="/my/profile">Submit</button>   
+      <button (click)="submitAddress(f.value)" class="btn btn-primary">Submit</button>
+      <button (click)="editAddress(f.value)" class="btn btn-secondary" 
+        style="margin-left: 1em;">Edit</button> 
     </form>
   </div>
 
