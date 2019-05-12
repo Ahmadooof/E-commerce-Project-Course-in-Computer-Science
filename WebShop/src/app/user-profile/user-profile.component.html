@@ -8,7 +8,7 @@
     <h2>Billing Address</h2>
     <hr>
 
-    <form><!-- #f="ngForm" (ngSubmit)="save(f.value)" -->
+    <form #f="ngForm">
       <div class="form-row">
         <div class="form-group col-md-6">
           <input 
@@ -129,10 +129,11 @@
           </div>
         </div>
       </div>
-      <button (click)="submitAddress()" class="btn btn-primary" 
-      routerLink="/my/profile">Submit</button>
+      <button (click)="submitAddress(f.value)" class="btn btn-primary" 
+      routerLink="/my/profile">Submit</button>   
     </form>
   </div>
+
   <div *ngIf="show" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
     <h2>Billing Address</h2>
     <hr>

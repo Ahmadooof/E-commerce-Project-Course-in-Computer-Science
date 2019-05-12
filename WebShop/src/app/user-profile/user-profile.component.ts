@@ -34,21 +34,12 @@ export class UserProfileComponent implements OnInit {
     this.userSubscription.unsubscribe();
   }
 
-  submitAddress() {
-    let billingAddress = {
-      address: this.address,
-      /*firstname: 'Johanna Sarah',
-      surname: 'Doe',
-      address1: 'Tutorroad 18, LGH 14',
-      address2: 'Apartment',
-      city: 'Somewhere',
-      state: 'Elsewhere',
-      zip: '666 66'*/
-    };
-    //this.show = true;
-    console.log(this.address);
-    console.log(this.userId);
-    this.userService.saveAddress(this.userId, this.address);
+  submitAddress(data) {
+    this.userService.saveAddress(this.userId, data);
+  }
+
+  save(data){
+    console.log(data);
   }
 
 }
