@@ -1,9 +1,9 @@
-export interface BillingAddress {
-  name: string;
+export interface Address {
+  firstname: string;
   surname: string;
-  address: string;
+  address1: string;
   address2: string;
   city: string;
   state: string;
-  zip: string;
+  zip: number;
 }

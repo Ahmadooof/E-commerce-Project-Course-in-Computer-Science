@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
 import { Subscription } from 'rxjs/Subscription';
-import { BillingAddress } from '../models/billing-address';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,40 +9,24 @@ import { BillingAddress } from '../models/billing-address';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  address = {
+    firstname: "",
+    surname: "",
+    address1: "",
+    address2: '',
+    city: '',
+    state: '',
+    zip: ''
+  };
   userSubscription: Subscription;
   userId: string;
-  //addressSaved: boolean;
-  //user: BillingAddress;
+  show: boolean;
 
-  name: string;
-  surname: string;
-  address: string;
-  address2: string;
-  city: string;
-  state: string;
-  zip: number;
-
-  constructor(private db: AngularFireDatabase,
-    private authService: AuthService,
-    private userService: UserService) {
-    /*
-        //read address from the router, get id(key
-        this.id = this.route.snapshot.paramMap.get('id');
-        /**
-         * OBS
-         * This is the part that gets an observable from the db, it is stored in
-         * the course field
-         */
-    /*if (this.id) {
-      this.userService.getA(this.id)
-        .valueChanges()
-        .take(1)
-        .subscribe(u => this.user = u);
-    }*/
-  }
+  constructor(private authService: AuthService,
+    private userService: UserService) { }
 
   async ngOnInit() {
-    //this.addressSaved = false;
+    this.show = false;
     this.userSubscription = this.authService.user$.subscribe(user => this.userId = user.uid);
   }
 
@@ -52,28 +34,12 @@ export class UserProfileComponent implements OnInit {
     this.userSubscription.unsubscribe();
   }
 
-  submitAddress() {
-    let address = {
-      name: 'user.name',
-      surname: 'user.surname',
-      address: 'user.address',
-      address2: 'user.address2',
-      city: 'user.city',
-      state: 'user.state',
-      zip: 'user.zip'
-      //userId: this.userId
-    };
-    this.userService.saveAddress(this.userId, address);
+  submitAddress(data) {
+    this.userService.saveAddress(this.userId, data);
   }
-  /*
-    submitAddress(address) {
-      if (this.userId) {
-        this.userService.updateAddress(this.userId, address);
-      } else {
-        this.userService.saveAddress(this.userId, address);
-      }
-      this.router.navigate(['/shopping-cart']);
-    }
-  */
-}
 
+  save(data){
+    console.log(data);
+  }
+
+}

@@ -1,31 +1,28 @@
-<div class="form-row">
+<div class="row">
   <div class="col-md-6" style="padding: 2em;">
-    <h2>Some Information</h2>
-    <p>Filler paragraphs Filler paragraphs Filler paragraphs Filler paragraphs
-      Filler paragraphs Filler paragraphs Filler paragraphs Filler paragraphs
-      Filler paragraphs Filler paragraphs Filler paragraphs Filler paragraphs
-      Filler paragraphs Filler paragraphs Filler paragraphs Filler paragraphs
-    </p>
+    <h2>EMPTY</h2>
+    <hr>
   </div>
   <!-- BILLING ADDRESS COLUMN -->
-  <div class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
+  <div *ngIf="!show" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
     <h2>Billing Address</h2>
     <hr>
 
-    <form>
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
       <div class="form-row">
         <div class="form-group col-md-6">
           <input 
-            #name="ngModel" 
-            name="name" 
-            [(ngModel)]="user.name" 
+            #firstname="ngModel"
+            name="firstname"
+            [(ngModel)]="address.firstname" 
+            id="firstname" 
             type="text" 
             class="form-control" 
             required
-            placeholder="First name">
+            placeholder="First firstname">
 
-          <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-            <div *ngIf="name.errors.required">First name is required.</div>
+          <div class="alert alert-danger" *ngIf="firstname.touched && firstname.invalid">
+            <div *ngIf="firstname.errors.required">First name is required.</div>
           </div>
         </div>
 
@@ -33,7 +30,8 @@
             <input 
               #name="ngModel" 
               name="surname" 
-              [(ngModel)]="user.surname" 
+              [(ngModel)]="address.surname" 
+              id="surname" 
               type="text" 
               class="form-control" 
               required
@@ -49,8 +47,9 @@
         <label for="inputAddress">Adress</label>
         <input 
           #address="ngModel" 
-          name="address" 
-          [(ngModel)]="user.address" 
+          name="address1" 
+          [(ngModel)]="address.address1" 
+          id="address1" 
           type="text"
           class="form-control" 
           placeholder="Storgatan 82D, LGH 1812" 
@@ -66,7 +65,8 @@
         <input 
           #address2="ngModel" 
           name="address2" 
-          [(ngModel)]="user.address2" 
+          [(ngModel)]="address.address2" 
+          id="address2" 
           type="text"
           class="form-control" 
           placeholder="Apartment, studio or floor" 
@@ -83,7 +83,8 @@
           <input 
             #city="ngModel" 
             name="city" 
-            [(ngModel)]="user.city" 
+            [(ngModel)]="address.city" 
+            id="city" 
             type="text" 
             class="form-control" 
             required
@@ -99,7 +100,8 @@
           <input 
             #state="ngModel" 
             name="state" 
-            [(ngModel)]="user.state" 
+            [(ngModel)]="address.state" 
+            id="state" 
             type="text"
             class="form-control" 
             required
@@ -115,7 +117,8 @@
           <input 
             #zip="ngModel" 
             name="zip" 
-            [(ngModel)]="user.zip" 
+            [(ngModel)]="address.zip" 
+            id="zip" 
             type="text" 
             class="form-control" 
             required
@@ -126,23 +129,14 @@
           </div>
         </div>
       </div>
-<!--
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            Save information for future orders?
-          </label>
-        </div>
-      </div>
- -->
-      <button type="submit" (click)="submitAddress()" class="btn btn-primary">Submit</button>
+      <button (click)="submitAddress(f.value)" class="btn btn-primary" 
+      routerLink="/my/profile">Submit</button>   
     </form>
   </div>
-</div> 
-<!-- If address saved -->
-<!--<div *ngIf="addressSaved = true" class="card col-md-6" style="padding: 2em;">
-    <h2>Billing Address Saved</h2>
+
+  <div *ngIf="show" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
+    <h2>Billing Address</h2>
     <hr>
-    <button type="edit" (click)="editAddress()" class="btn btn-primary">Edit</button>
-</div>-->
+    <p>Billing Address Saved!</p>
+  </div>
+</div>
