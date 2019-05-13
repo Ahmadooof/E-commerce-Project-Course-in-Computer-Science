@@ -2,6 +2,7 @@
 *ngIf="product.title" style="width: 22.5em;">
   <!-- mb-4 shadow-sm adds a shadow to the card. -->
   <!-- PRODUCT IMAGE -->
+  <div class="ribbon" *ngIf="product.dealOfDay=='true'"><span>DISCOUNT</span></div>
   <img class="card-img-top" [src]="product.imageUrl" 
   width="100%" height="225" 
   preserveAspectRatio="xMidYMid slice"
@@ -38,9 +39,16 @@
         </div>
       </div>
       <!-- PRICE -->
-      <div class="product-price-group">
-        <small class="text-muted">{{ product.price | currency:'SEK ': 'symbol' }}</small>
+      <div class="product-price-group" *ngIf="product.dealOfDay=='false'">
+          <small class="text-muted" >{{ product.price | currency:'SEK ': 'symbol' }}</small>
       </div>
+      <div class="product-price-group" *ngIf="product.dealOfDay=='true'">
+          <small class="text-muted" >{{ product.reducedPrice | currency:'SEK ': 'symbol' }} </small>
+          <small class="text-muted" ><s>{{ product.price | currency:'SEK ': 'symbol' }}</s></small>
+      </div>
+     
+      
+      
     </div>
   </div>
   <!-- HOW MANY ITEMS IN STOCK -->

@@ -88,6 +88,10 @@ export class ProductFormComponent implements OnInit {
     this.fileLinkService.create(this.linkToFile, this.id);
   }
 
+  update(){
+    this.productService.updateProduct(this.id, this.course);
+  }
+
   ngOnInit() {
 
   }
