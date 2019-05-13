@@ -61,9 +61,27 @@
           <div *ngIf="imgUrl.errors.required">You must provide a valid image URL.</div>
 
         </div>
-      </div>
+			</div>
+
+			 <!--DISCOUNTED PRICE-->
+       <div class="form-group" *ngIf="course.dealOfDay=='true'">
+         <label for="Reduced Price">Reduced price</label>
+         <input #title="ngModel" [(ngModel)]="course.reducedPrice" name="reducedPrice" id="reducedPrice" 
+         type="number" class="form-control" required [min]="0" [max]="course.price">
+       </div>
+      
+       <!--DEALL OF THE DAY BOOLEAN-->
+        <div class="form-group">
+              <label for="dealOfDay">Deal Of The Day</label>
+               <select #dealOfDay="ngModel" [(ngModel)]="course.dealOfDay" name="dealOfDay"
+                id="dealOfDay" type="boolean" class="form-control" required >
+                   <option value="true">True</option>
+                   <option value="false">False</option>
+               </select>   
+         </div>
+			
       <!--BUTTONS!-->
-      <button [disabled]="!f.valid" class="btn btn-primary">Save</button>
+      <button class="btn btn-primary" (click)="update()">Save</button>
       <button *ngIf="id" type="button" (click)="delete()" 
       class="btn btn-danger">Delete</button>
       <button type="button" class="btn btn-info" (click)="back()">Back</button>

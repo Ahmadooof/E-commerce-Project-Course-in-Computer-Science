@@ -8,4 +8,6 @@ export interface Product {
     rating: number;
     numberOfVotes: number;
     quantity: number;
+    dealOfDay: boolean;
+    reducedPrice: number;
 }
