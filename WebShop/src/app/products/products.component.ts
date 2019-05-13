@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, wtfCreateScope } from '@angular/core';
 import { ProductService } from '../product.service';
 import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { Product } from '../models/product';
 import 'rxjs/add/operator/switchMap';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { Subscription } from 'rxjs';
+import { convertToR3QueryMetadata } from '@angular/core/src/render3/jit/directive';
 
 @Component({
   selector: 'app-products',
@@ -92,6 +93,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
       case 6: 
        this.orderByRatingAsc();
        break;
+      case 7: 
+        this.orderByDeal();
+        break;
       default:
         this.setCourseFilter();
         break;
@@ -119,6 +123,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       (a,b) => {if(a.title > b.title) { return -1; }}
     );
   }
+
   orderByPriceDes(){
     this.filterProducts = this.courseFilter().sort(
       (a,b) => b.price-a.price
@@ -129,8 +134,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
       (a,b) => a.price-b.price
     );
   }
+  orderByDeal(){   
+    this.filterProducts = this.courseFilter().filter(p => this.filterDeals(p.dealOfDay, "true" ));
+  }
   
-
+  filterDeals(a,b){
+    return a === b;
+  }
+  
   async ngOnInit() {
     this.subscribtion = (await this.cartService.getCart())
       .subscribe(cart => this.cart = cart);

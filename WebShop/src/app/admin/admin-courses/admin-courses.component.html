@@ -13,6 +13,7 @@
   <thead>
     <tr>
       <th>Course Title</th>
+      <th>Deal</th>
       <th>Price</th>
       <th>Stock</th>
       <th></th>
@@ -21,6 +22,7 @@
   <tbody>
     <tr *ngFor="let c of courses$ | async">
       <td>{{c.title}}</td>
+      <td>{{c.dealOfDay}}</td>
       <td>{{c.price}}</td>
       <td>{{c.stock}}</td>
       <td>

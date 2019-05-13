@@ -50,6 +50,7 @@
           <option value="4">Price &uArr;</option>
           <option value="5">Rating &dArr;</option>
           <option value = "6">Rating &uArr;</option>
+          <option value = "7">Deal</option>
           <option value = "">No Filter </option>
         </select>
       </div>
@@ -64,7 +65,12 @@
       <!--<ng-container *ngFor="let p of products$ | async"> -->
         <ng-container *ngFor="let p of filterProducts">
           <div class="col">
-            <product-card [product] = "p" [shopping-cart]="cart" [link]="p.link" [hasLink]="p.hasLink"></product-card>
+            <product-card [product] = "p" [shopping-cart]="cart" ></product-card>
+<!--
+              <product-card [product] = "p" [shopping-cart]="cart" [link]="p.link" [hasLink]="p.hasLink"></product-card>
+
+-->
+
           </div>
         </ng-container>
       </div>
