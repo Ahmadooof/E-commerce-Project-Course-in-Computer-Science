@@ -26,7 +26,11 @@ export class UserService {
 
   // Store users Address in Firebase
   saveAddress(userId, billingAddress) {
-    return this.db.list('/users/' + userId + '/address').push(billingAddress);
+    return this.db.database.ref().child('/users/' + userId + '/address/')
+      .set(billingAddress);
+    
+    //OLD BACKUP CODE
+    //return this.db.list('/users/' + userId + '/address').push(billingAddress);
   }
 
   // Get the users address object from Firebase

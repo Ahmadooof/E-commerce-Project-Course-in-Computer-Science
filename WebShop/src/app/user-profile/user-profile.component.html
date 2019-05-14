@@ -1,11 +1,16 @@
 <h1></h1>
 <div class="row">
   <div class="col-md-6" style="padding: 2em;">
-    <h2>EMPTY</h2>
-    <hr>
+    <h2 *ngIf="addressIsSaved">True</h2>
+    <h2 *ngIf="!addressIsSaved">False</h2>
+    <hr style="margin-top: 1.55em;">
+    <p *ngIf="addressIsSaved">This means that the address is saved (virtually) 
+      just need to manage some Firebase related getters.</p>
+    <p *ngIf="!addressIsSaved">This means that the address is not saved 
+      OR you want to edit your current address.</p>
   </div>
   <!-- BILLING ADDRESS COLUMN -->
-  <div *ngIf="!show" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
+  <div *ngIf="!addressIsSaved" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
     <h2>Billing Address</h2>
     <hr>
     <!-- FIRST NAME -->
@@ -130,12 +135,13 @@
           </div>
         </div>
       </div>
-      <button (click)="submitAddress(f.value)" class="btn btn-primary">Submit</button>
+        <button (click)="submitAddress(f.value)" class="btn btn-primary">Submit</button>
+        <button (click)="addressIsSaved = true" class="btn btn-danger" style="margin-left: 0.5em;">Cancel</button> <!-- (click)="cancelAddress()"  -->
     </form>
   </div>
 
-  <div *ngIf="show" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
-    <h2>Billing Address Saved!</h2>
+  <div *ngIf="addressIsSaved" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
+    <h2>Billing Address</h2>
     <hr>
 
     <form #f="ngForm">
@@ -148,7 +154,7 @@
             id="firstname" 
             type="text" 
             class="form-control"
-            placeholder="{{address.firstname}}">
+            placeholder="{{ address.firstname }}">
         </div>
         <div class="form-group col-md-6">
           <input disabled  
@@ -213,7 +219,7 @@
             class="form-control">
         </div>
       </div>
-      <button class="btn btn-primary" routerLink="/">Edit</button>
+      <button (click)="addressIsSaved = false" class="btn btn-primary">Edit</button>
     </form>
   </div>
 </div>
