@@ -1,13 +1,6 @@
 <h1></h1>
 <div class="row">
   <div class="col-md-6" style="padding: 2em;">
-    <h2 *ngIf="addressIsSaved">True</h2>
-    <h2 *ngIf="!addressIsSaved">False</h2>
-    <hr style="margin-top: 1.55em;">
-    <p *ngIf="addressIsSaved">This means that the address is saved (virtually) 
-      just need to manage some Firebase related getters.</p>
-    <p *ngIf="!addressIsSaved">This means that the address is not saved 
-      OR you want to edit your current address.</p>
   </div>
   <!-- BILLING ADDRESS COLUMN -->
   <div *ngIf="!addressIsSaved" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
@@ -140,86 +133,59 @@
     </form>
   </div>
 
-  <div *ngIf="addressIsSaved" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
+  <div *ngIf="addressIsSaved && items$ | async; let users; else loading" class="card col-md-6" 
+    style="padding: 2em;">
     <h2>Billing Address</h2>
     <hr>
-
-    <form #f="ngForm">
+    <!-- FIRST NAME -->
+    <form *ngFor="let user of users">
+      <h4>{{ user.name }}</h4>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <input disabled  
-            #firstname="ngModel" 
-            name="firstname" 
-            [(ngModel)]="address.firstname" 
-            id="firstname" 
-            type="text" 
-            class="form-control"
-            placeholder="{{ address.firstname }}">
+          <input disabled type="text" class="form-control"
+            placeholder="{{ user.address.firstname }}">
         </div>
+        <!-- SURNAME -->
         <div class="form-group col-md-6">
-          <input disabled  
-            #surname="ngModel" 
-            name="surname" 
-            [(ngModel)]="address.surname" 
-            id="surname" 
-            type="text" 
-            class="form-control">
+            <input disabled type="text" class="form-control"
+            placeholder="{{ user.address.surname }}">
         </div>
       </div>
+      <!-- ADDRESS 1 -->
       <div class="form-group">
-        <label for="inputAddress1">Address 1</label>
-        <input disabled  
-            #address1="ngModel" 
-            name="address1" 
-            [(ngModel)]="address.address1" 
-            id="address1" 
-            type="text" 
-            class="form-control">
+        <label for="inputAddress">Adress</label>
+        <input disabled type="text" class="form-control"
+            placeholder="{{ user.address.address1 }}">
       </div>
+      <!-- ADDRESS 2 -->
       <div class="form-group">
         <label for="inputAddress2">Address 2</label>
-        <input disabled  
-            #address2="ngModel" 
-            name="address2" 
-            [(ngModel)]="address.address2" 
-            id="address2" 
-            type="text" 
-            class="form-control">
+        <input disabled type="text" class="form-control"
+            placeholder="{{ user.address.address2 }}">
       </div>
-
+      <!-- CITY -->
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputCity">City</label>
-          <input disabled  
-            #city="ngModel" 
-            name="city" 
-            [(ngModel)]="address.city" 
-            id="city" 
-            type="text" 
-            class="form-control">
+          <input disabled type="text" class="form-control"
+            placeholder="{{ user.address.city }}">
         </div>
+        <!-- STATE -->
         <div class="form-group col-md-4">
           <label for="inputState">State</label>
-          <input disabled  
-            #state="ngModel" 
-            name="state" 
-            [(ngModel)]="address.state" 
-            id="state" 
-            type="text" 
-            class="form-control">
+          <input disabled type="text" class="form-control"
+            placeholder="{{ user.address.state }}">
         </div>
+      <!-- ZIP -->
         <div class="form-group col-md-2">
           <label for="inputZip">Zip</label>
-          <input disabled 
-            #zip="ngModel" 
-            name="zip" 
-            [(ngModel)]="address.zip" 
-            id="zip" 
-            type="text" 
-            class="form-control">
+          <input disabled type="text" class="form-control"
+            placeholder="{{ user.address.zip }}">
         </div>
       </div>
+      <ng-template #loading>Loading&hellip;</ng-template>
       <button (click)="addressIsSaved = false" class="btn btn-primary">Edit</button>
+      <hr>
     </form>
   </div>
 </div>
