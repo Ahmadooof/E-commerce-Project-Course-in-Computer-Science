@@ -1,6 +1,40 @@
 <h1></h1>
 <div class="row">
   <div class="col-md-6" style="padding: 2em;">
+    <!--   TEST   -->
+    <ul class="items" *ngIf="items$ | async; let users; else loading">
+      <h2>Users</h2>
+      {{ users | json }}<br/><br/>
+      
+      <ul *ngFor="let user of users">
+        <!--<p>Single users Address</p>-->
+        <h3>{{ user.name }}</h3>
+        {{ user.address | json }}
+        <!--<p>{{ user.address.address1 | json  }}</p>
+        <p>{{ user.address.address2 | json  }}</p>
+        <p>{{ user.address.city | json  }}</p>
+        <p>{{ user.address.firstname | json  }}</p>
+        <p>{{ user.address.surname | json  }}</p>
+        <p>{{ user.address.state | json  }}</p>
+        <p>{{ user.address.zip | json  }}</p>-->
+        <!-- DOESNT WORK FSR -->
+        <!--<ul>
+          <h2> KEY PIPE </h2>
+          keys: {{ user.address | keys | json }}<br/><br/>
+          <li *ngFor="let ads of user.address | keys">-->
+            <!--{{ ads.key }}<br/>-->
+            <!--{{ ads.value.firstname }}<br/>
+          </li>
+        </ul>-->
+      </ul>
+    </ul>
+    <ng-template #loading>Loading&hellip;</ng-template>
+      <!--<div *ngFor="let ads of address$ | async">
+          <p>{{ads.email}}</p>
+          <p>{{ads.name}}</p>
+          <p>{{ads.address}}</p>
+        </div>-->
+    <!-------------->
     <h2 *ngIf="addressIsSaved">True</h2>
     <h2 *ngIf="!addressIsSaved">False</h2>
     <hr style="margin-top: 1.55em;">
@@ -8,6 +42,7 @@
       just need to manage some Firebase related getters.</p>
     <p *ngIf="!addressIsSaved">This means that the address is not saved 
       OR you want to edit your current address.</p>
+      
   </div>
   <!-- BILLING ADDRESS COLUMN -->
   <div *ngIf="!addressIsSaved" class="card col-md-6" style="padding: 2em;"><!--*ngIf="addressSaved = false"-->
@@ -146,15 +181,15 @@
 
     <form #f="ngForm">
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <input disabled  
+        <div *ngIf="address$ | async as address" class="form-group col-md-6">
+          <input disabled 
             #firstname="ngModel" 
             name="firstname" 
             [(ngModel)]="address.firstname" 
             id="firstname" 
             type="text" 
             class="form-control"
-            placeholder="{{ address.firstname }}">
+            placeholder="{{ address }}">
         </div>
         <div class="form-group col-md-6">
           <input disabled  
@@ -163,7 +198,8 @@
             [(ngModel)]="address.surname" 
             id="surname" 
             type="text" 
-            class="form-control">
+            class="form-control"
+            placeholder="Does this even show?...">
         </div>
       </div>
       <div class="form-group">
