@@ -21,10 +21,8 @@ export class UserProfileComponent implements OnInit {
   userId: string;
   addressIsSaved: boolean;
   address$: Observable<any>;
-  /*TEST*/items: AngularFireList<any>;
-  /*TEST*/items$: Observable<any[]>;
-  /*TEST*///public test$: Observable<any>;
-  /*TEST*///public test2$: Observable<string>;
+  items: AngularFireList<any>;
+  items$: Observable<any[]>;
 
   checkbox = {
     checked: false
@@ -42,22 +40,14 @@ export class UserProfileComponent implements OnInit {
 
   constructor(public authService: AuthService,
     public userService: UserService, public afAuth: AngularFireAuth,
-    public db: AngularFireDatabase) {
-
-    /*TEST*///this.address$ = db.list('users').valueChanges(); // Get users and email
-
-    //this.address$ = this.getFirstName();
-
-  }
+    public db: AngularFireDatabase) { }
 
   async ngOnInit() {
     this.userSubscription = this.authService.user$.subscribe(user =>
       this.userId = user.uid);
 
-    /*TEST*/this.items = this.db.list('users');
-    /*TEST*/this.items$ = this.items.valueChanges();
-    /*TEST*///this.test2$ = of('firstname');
-    /*TEST*///this.test$ = this.getData();
+    this.items = this.db.list('users');
+    this.items$ = this.items.valueChanges();
   }
 
   ngOnDestroy() {
