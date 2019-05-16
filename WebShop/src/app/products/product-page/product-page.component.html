@@ -21,9 +21,13 @@
     <!-- ADD TO CART FUNCTINALITY -->
  
     <!-- PRICE -->
-    <div class="product-price-group">
-      <small class="text-muted">{{ myProduct.price | currency:'SEK ': 'symbol' }}</small>
-    </div>
+    <div class="product-price-group" *ngIf="myProduct.dealOfDay=='false'">
+      <small class="text-muted" >{{ myProduct.price | currency:'SEK ': 'symbol' }}</small>
+  </div>
+  <div class="product-price-group" *ngIf="myProduct.dealOfDay=='true'">
+      <small class="text-muted" >{{ myProduct.reducedPrice | currency:'SEK ': 'symbol' }} </small>
+      <small class="text-muted" ><s>{{ myProduct.price | currency:'SEK ': 'symbol' }}</s></small>
+  </div>
        <!-- this is how you display the download link for the cloud material add later in new HTML template but don't change the TS file--> 
        <a href="{{downloadLink}}" *ngIf="downloadLink!=null">Download cloud material</a> <p></p>     
     <div class="rating-in-card">
