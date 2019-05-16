@@ -58,10 +58,14 @@
         <input #imgUrl="ngModel" [(ngModel)]="course.imageUrl" name="imageUrl" 
         id="imageUrl" type="text" class="form-control" required url>
         <div class="alert alert-danger" *ngIf="imgUrl.touched && imgUrl.invalid">
-          <div *ngIf="imgUrl.errors.required">You must provide a valid image URL.</div>
-
+          <div *ngIf="imgUrl.errors.required">You must provide a valid image URL.
+          </div>
         </div>
-			</div>
+        <!--Description-->
+        <label for="description">Description</label>
+        <textarea #description="ngModel" [(ngModel)]="course.description" name="description" 
+          id="description" type="textfield" rows="5" class="form-control"></textarea>
+        </div>
 
 			 <!--DISCOUNTED PRICE-->
        <div class="form-group" *ngIf="course.dealOfDay=='true'">

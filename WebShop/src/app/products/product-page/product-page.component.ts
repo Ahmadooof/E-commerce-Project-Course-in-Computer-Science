@@ -32,14 +32,12 @@ export class ProductPageComponent implements OnInit {
   readOnly = false;
 
   constructor(private ps: ProductService, 
-    private router: Router, private ls : FileLinkService) {
+    private router: Router, private ls : FileLinkService,
+    private cartService: ShoppingCartService) {
 
-
-      
     this.productID = this.router.url.substr(this.router.url.lastIndexOf('=') + 1);
 
     console.log(this.productID);
-
     this.myProd$ = ps.get(this.productID).valueChanges();
     this.linkObject = ls.get(this.productID);
     this.linkObject.snapshotChanges().subscribe(a => this.downloadLink = a.payload.val() );
@@ -48,8 +46,6 @@ export class ProductPageComponent implements OnInit {
     ps.get(this.productID).snapshotChanges().pipe(
       map(a => ({ key: a.key, ...a.payload.val() } as Product))
       ).subscribe(p => this.myProduct = p);
-    
-
     }
 
   rate(rating: number){
@@ -64,6 +60,10 @@ export class ProductPageComponent implements OnInit {
     this.ps.updateProduct(this.productID, this.myProduct);    
   }
 
+  addToCart() {
+    this.cartService.addToCart(this.product);
+  }
+
  //If readonly false, rate and block rating
   onClic(rate){    
     if(!this.readOnly){
@@ -71,7 +71,5 @@ export class ProductPageComponent implements OnInit {
     }
     this.readOnly = true;
   }
-
-  
 
 }

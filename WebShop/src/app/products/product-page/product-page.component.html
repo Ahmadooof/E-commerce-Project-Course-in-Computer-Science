@@ -8,6 +8,7 @@
   <div class="card-body">
 
     <h3 class="card-title">{{ myProduct.title }}</h3>
+    <p>{{ myProduct.description }}</p>
   
     <div class="rating-static">
       <ngb-rating [(rate)]="myProduct.rating" [readonly]="true">
@@ -19,7 +20,8 @@
     </div>
 
     <!-- ADD TO CART FUNCTINALITY -->
- 
+    <button (click)="addToCart()" class="btn btn-primary">Add to Cart</button>
+
     <!-- PRICE -->
     <div class="product-price-group" *ngIf="myProduct.dealOfDay=='false'">
       <small class="text-muted" >{{ myProduct.price | currency:'SEK ': 'symbol' }}</small>
