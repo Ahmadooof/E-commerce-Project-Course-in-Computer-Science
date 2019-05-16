@@ -5,18 +5,35 @@
       <th>Customer</th>
       <th>Address</th>
       <th>City</th>
+      <th>Course Name</th>
+      <th>Total Price</th>
       <th></th>
     </tr>
   </thead> 
   <tbody>
     <tr *ngFor="let c of orders$ | async">
-      <td>{{c.shipping.name}}</td>
+      <td>{{ c.shipping.name }}</td>
       <td>
        {{c.shipping.addressLine1}}
       </td>
       <td>
           {{c.shipping.city}}
-         </td>
-    </tr>
+      </td>
+
+    <p *ngFor="let item of c.items;">
+      <td>
+      {{ item.product.title }}
+      </td>
+      <td>
+        x{{ item.quantity }}
+     </td>
+    </p>
+    <td>
+      {{ c.totalCost }}
+    </td>
+
+  </tr>
+  
+
   </tbody> 
 </table>
