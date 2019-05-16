@@ -15,6 +15,7 @@ export class UserProfileComponent implements OnInit {
   userSubscription: Subscription;
   userId: string;
   addressIsSaved: boolean;
+  addressNeedsUpdate: boolean;
   address$: Observable<any>;
   items: AngularFireList<any>;
   items$: Observable<any[]>;
@@ -41,6 +42,7 @@ export class UserProfileComponent implements OnInit {
     this.userSubscription = this.authService.user$.subscribe(user =>
       this.userId = user.uid);
 
+    this.addressNeedsUpdate = true;
     this.items = this.db.list('users');
     this.items$ = this.items.valueChanges();
   }
@@ -50,6 +52,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   submitAddress(data) {
+    this.addressNeedsUpdate = false;
+
     this.userService.saveAddress(this.userId, data);
     this.addressIsSaved = false;
   }

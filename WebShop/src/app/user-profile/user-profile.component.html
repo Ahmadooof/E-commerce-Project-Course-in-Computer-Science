@@ -129,7 +129,7 @@
         </div>
       </div>
         <button (click)="submitAddress(f.value)" class="btn btn-primary">Submit</button>
-        <button (click)="addressIsSaved = false" class="btn btn-danger" style="margin-left: 0.5em;">Cancel</button> <!-- (click)="cancelAddress()"  -->
+        <button (click)="addressIsSaved = false" class="btn btn-danger" style="margin-left: 0.5em;">Cancel</button>
     </form>
   </div>
 
@@ -142,7 +142,6 @@
       <!-- These two ng-containers is the magic that makes the user profile billing work... -->
       <ng-container *ngIf="authService.user$ | async as id; else anonymousUser">
         <ng-container *ngIf="user.address && user.name==id.displayName">
-          <h4>{{ user.name }}</h4>
           <div class="form-row">
             <div class="form-group col-md-6">
               <input disabled type="text" class="form-control"
@@ -187,9 +186,10 @@
             </div>
           </div>
           <ng-template #loading>Loading&hellip;</ng-template>
-          <button (click)="addressIsSaved = true" class="btn btn-primary">Edit</button>
-        </ng-container>
+          </ng-container>
       </ng-container>
-    </form>
+      </form>
+      <button *ngIf="addressNeedsUpdate" (click)="addressIsSaved = true" 
+        class="btn btn-primary" style="margin-top: 1em;">UPDATE</button>
   </div>
 </div>
