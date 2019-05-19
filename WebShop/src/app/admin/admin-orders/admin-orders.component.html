@@ -6,6 +6,7 @@
       <th>Address</th>
       <th>City</th>
       <th>Course Name</th>
+      <th>Order Status</th>
       <th>Total Price</th>
       <th></th>
     </tr>
@@ -20,17 +21,35 @@
           {{c.shipping.city}}
       </td>
 
-    <p *ngFor="let item of c.items;">
+      
+
+      <p *ngFor="let item of c.items;">
+        <td>
+        {{ item.product.title }}
+        </td>
+        
+        <td>
+          x{{ item.quantity }}
+       </td>
+      </p>
       <td>
-      {{ item.product.title }}
+          <div class="list-group mb-4 shadow-sm">
+            
+          <select>
+         
+        <option value="0" >In Progress</option>
+        <option value="1">Processing</option>
+        <option value="2">Completed</option>
+      </select>
+    </div>
       </td>
       <td>
-        x{{ item.quantity }}
-     </td>
-    </p>
-    <td>
-      {{ c.totalCost }}
-    </td>
+        {{ c.totalCost }}
+      </td>
+
+   
+      
+    
 
   </tr>
   
