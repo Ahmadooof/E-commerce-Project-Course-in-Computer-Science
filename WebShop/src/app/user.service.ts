@@ -35,7 +35,7 @@ export class UserService {
 
   // Get the users address object from Firebase
   getAddress(uid: string): Observable<any> {
-    return this.db.object('/users/' + uid + '/address').valueChanges();
+    return this.db.list('/users/' + uid + '/address').valueChanges();
   }
 
 }
