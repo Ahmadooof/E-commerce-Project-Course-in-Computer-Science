@@ -104,6 +104,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ShoppingCartService,
     FileLinkService,
     OrderService,
+    UserProfileComponent
   ],
   bootstrap: [AppComponent]
 })
