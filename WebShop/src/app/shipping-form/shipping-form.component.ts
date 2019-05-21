@@ -17,14 +17,14 @@ import { UserService } from '../user.service';
 export class ShippingFormComponent implements OnInit, OnDestroy {
   @Input('cart') cart: ShoppingCart;
   @Input('uP') profile: UserProfileComponent;
-  
+
   shipping = {};
   // THIS ORDERADDRESS GIVES ERROR! // CANNOT USE THIS.USERPROFILE.ADDRESS.ETC. //
   orderAddress = {
     addressLine1: this.userProfile.address.address1,
     addressLine2: this.userProfile.address.address2,
     city: this.userProfile.address.city,
-    name:  this.userProfile.address.surname
+    name: this.userProfile.address.surname
   };
   //// 
   userId: string;
@@ -39,19 +39,19 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private db: AngularFireDatabase,
-    private userService: UserService,
+    private userService: UserService, // Can probably be removed.
     private userProfile: UserProfileComponent
-  ){}
+  ) { }
 
-  async ngOnInit(){
+  async ngOnInit() {
     this.userSub = this.authService.user$.subscribe(user => this.userId = user.uid);
 
-    //this.addressNeedsUpdate = true;
+    //this.addressNeedsUpdate = true; // Probably not necassary.
     this.items = this.db.list('users');
     this.items$ = this.items.valueChanges();
   }
-  
-  ngOnDestroy(){
+
+  ngOnDestroy() {
     this.userSub.unsubscribe();
   }
 
@@ -62,11 +62,17 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     this.router.navigate(['/order-success', result.key]);
   }
 
+  // Virtually same as placeOrder() but with one minor tweak.
   async placeOrderWithSavedAddress() {
-    
+    this.shipping = this.userProfile.items;   
+    //TEST {
+      /*addressLine1: this.userProfile.address.address1,
+      addressLine2: this.userProfile.address.address2,
+      city: this.userProfile.address.city,
+      name: this.userProfile.address.surname*/
+    //}
     let order = new Order(this.userId, this.orderAddress, this.cart, this.cart.totalPrice);
     let result = await this.orderService.placeOrder(order);
-
     this.router.navigate(['/order-success', result.key]);
   }
 

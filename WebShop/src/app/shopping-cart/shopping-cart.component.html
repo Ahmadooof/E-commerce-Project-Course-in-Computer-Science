@@ -1,3 +1,4 @@
+<!-- Actual Page -->
 <h1 style="margin: 0em 0em 1em 0em">Shopping Cart</h1>
 <div class="row col-10" *ngIf="cart$ | async as cart">
   <p>
@@ -36,8 +37,6 @@
       </tr>
     </tfoot>
   </table>
-  <a style="margin: 0em 4em 0em 0em" routerLink="/check-out" *ngIf="cart.items.length" class="btn btn-primary">Check Out</a>
-  <button *ngIf="cart.items.length" (click)="clearCart()" class="btn btn-danger">Clear Shopping Cart</button>
-
+  <button *ngIf="cart.items.length" class="btn btn-primary" routerLink="/check-out">Check Out</button>
+  <button *ngIf="cart.items.length" class="btn btn-danger" (click)="clearCart()" style="margin-left: 0.5em;">Clear Shopping Cart</button>
 </div>
-
