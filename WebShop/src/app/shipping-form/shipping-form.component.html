@@ -1,7 +1,7 @@
 <div class="card" style="padding: 2em;">
-  <form *ngIf="addressIsSaved" #f="ngForm">
+  <!-- <form *ngIf="addressIsSaved" #f="ngForm">
     <div class="form-group">
-      <label for="">Name</label>
+      <label for="">skdfndslfjdsklj</label>
       <input #name="ngModel" name="name" [(ngModel)]="shipping['name']" type="text" class="form-control"
         placeholder="Name" required>
       <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="">Address</label>
+      <label for="">Addresdfdsfdsdfsss</label>
       <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping['addressLine1']" type="text"
         class="form-control" placeholder="Line 1" required>
       <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
@@ -38,48 +38,56 @@
     </div>
 
     <button class="btn btn-primary" [disabled]="!f.valid" (click)="placeOrder()">Place Order</button>
-  </form>
+  </form> -->
   <!-- FIRST NAME -->
   <div *ngIf="!addressIsSaved && items$ | async; let users; else loading">
     <!-- FIRST NAME -->
-    <form *ngFor="let user of users">
+    <form *ngFor="let user of users" #f="ngForm">
       <!-- These two ng-containers is the magic that makes the user profile billing work... -->
       <ng-container *ngIf="authService.user$ | async as id; else anonymousUser">
         <ng-container *ngIf="user.address && user.name==id.displayName">
           <div class="form-row">
             <div class="form-group col-md-6">
-              <input disabled type="text" class="form-control" placeholder="{{ user.address.firstname }}">
+              <input type="text" #name="ngModel" name="firstname" [(ngModel)]="user.address.firstname" 
+              [(ngModel)]="shipping['firstname']" class="form-control">
             </div>
             <!-- SURNAME -->
             <div class="form-group col-md-6">
-              <input disabled type="text" class="form-control" placeholder="{{ user.address.surname }}">
+              <input #name="ngModel" name="surname" [(ngModel)]="user.address.surname" 
+              [(ngModel)]="shipping['surname']" type="text" class="form-control">
             </div>
           </div>
           <!-- ADDRESS 1 -->
           <div class="form-group">
             <label for="inputAddress">Adress</label>
-            <input disabled type="text" class="form-control" placeholder="{{ user.address.address1 }}">
+            <input #name="ngModel" name="address1" [(ngModel)]="user.address.address1"
+             [(ngModel)]="shipping['address1']" type="text" class="form-control">
           </div>
           <!-- ADDRESS 2 -->
           <div class="form-group">
             <label for="inputAddress2">Address 2</label>
-            <input disabled type="text" class="form-control" placeholder="{{ user.address.address2 }}">
+            <input #name="ngModel" name="address2" [(ngModel)]="user.address.address2"
+             [(ngModel)]="shipping['address2']" type="text" class="form-control">
           </div>
           <!-- CITY -->
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">City</label>
-              <input disabled type="text" class="form-control" placeholder="{{ user.address.city }}">
+              <input  #name="ngModel" name="city" [(ngModel)]="user.address.city" [(ngModel)]="shipping['city']" 
+              type="text" class="form-control">
             </div>
             <!-- STATE -->
             <div class="form-group col-md-4">
               <label for="inputState">State</label>
-              <input disabled type="text" class="form-control" placeholder="{{ user.address.state }}">
+              <input #name="ngModel" name="state" [(ngModel)]="user.address.state" [(ngModel)]="shipping['state']"
+               type="text" class="form-control" >
             </div>
             <!-- ZIP -->
             <div class="form-group col-md-2">
               <label for="inputZip">Zip</label>
-              <input disabled type="text" class="form-control" placeholder="{{ user.address.zip }}">
+              <input #name="ngModel" name="zip" [(ngModel)]="user.address.zip" [(ngModel)]="shipping['zip']" 
+              
+              type="text" class="form-control">
             </div>
           </div>
           <button class="btn btn-primary" (click)="placeOrderWithSavedAddress()">Place Order</button>
