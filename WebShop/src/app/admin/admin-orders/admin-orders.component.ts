@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/order.service';
+import { Order } from 'src/app/models/Order';
 
 @Component({
   selector: 'app-admin-orders',
@@ -7,13 +8,14 @@ import { OrderService } from 'src/app/order.service';
   styleUrls: ['./admin-orders.component.css']
 })
 export class AdminOrdersComponent {
-
+  current: Order;
   orders$;
   selectedStatus = 0;
   constructor(private orderService: OrderService) { 
     this.orders$ = orderService.getOrders();
   }
 
+  //TODO: 
   statusChanged(value){
     switch (+value) {
       case 0:  
@@ -30,7 +32,6 @@ export class AdminOrdersComponent {
     }
   }
 
-  updateOrder(order){
-
-  }
+  //TODO:
+  updateOrder(){}
 }

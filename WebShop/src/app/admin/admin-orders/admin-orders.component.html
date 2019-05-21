@@ -12,18 +12,18 @@
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let c of orders$ | async">
-      <td>{{ c.shipping.firstname}}</td>
+    <tr *ngFor="let order of orders$ | async" >
+      <td>{{ order.shipping.firstname}}</td>
       <td>
-       {{c.shipping.addressLine1}}
+       {{order.shipping.addressLine1}}
       </td>
       <td>
-          {{c.shipping.city}}
+          {{order.shipping.city}}
       </td>
 
       
 
-      <p *ngFor="let item of c.items;">
+      <p *ngFor="let item of order.items;">
         <td>
         {{ item.product.title }}
         </td>
@@ -46,7 +46,7 @@
     </div>
       </td>
       <td>
-        {{ c.totalCost }}
+        {{ order.totalCost }}
       </td>
 
    

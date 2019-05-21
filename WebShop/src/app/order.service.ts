@@ -24,8 +24,8 @@ export class OrderService {
     });
   }
 
-  updateOrder(order: Order){
-    this.db.list('/orders/')
+  //TODO:
+  updateOrder(r){
   }
 
 }

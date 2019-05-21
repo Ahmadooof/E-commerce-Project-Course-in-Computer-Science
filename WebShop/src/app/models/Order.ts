@@ -1,7 +1,6 @@
 import { ShoppingCart } from './shopping-cart';
 
 export class Order {
-    id?:string;
     datePlaced: number;
     items: any[];
     total: number;
@@ -27,4 +26,6 @@ export class Order {
             }
           })
     }
+
+  
 }
