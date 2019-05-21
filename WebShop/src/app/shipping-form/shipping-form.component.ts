@@ -18,7 +18,7 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   @Input('cart') cart: ShoppingCart;
   @Input('uP') profile: UserProfileComponent;
   
-  shipping = {};
+
   // THIS ORDERADDRESS GIVES ERROR! // CANNOT USE THIS.USERPROFILE.ADDRESS.ETC. //
   orderAddress = {
     addressLine1: this.userProfile.address.address1,
@@ -55,16 +55,21 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     this.userSub.unsubscribe();
   }
 
-  async placeOrder() {
-    let order = new Order(this.userId, this.shipping, this.cart, this.cart.totalPrice);
-    let result = await this.orderService.placeOrder(order);
+  // async placeOrder() {
+  //   let order = new Order(this.userId, this.shipping, this.cart, this.cart.totalPrice);
+  //   let result = await this.orderService.placeOrder(order);
 
-    this.router.navigate(['/order-success', result.key]);
-  }
+  //   this.router.navigate(['/order-success', result.key]);
+  // }
 
-  async placeOrderWithSavedAddress() {
+  async placeOrderWithSavedAddress(name: string, address: string, city: string) {
+    let shipping = {
+      name: name,
+      addressLine1 : address,
+      city: city
+    }
     
-    let order = new Order(this.userId, this.shipping, this.cart, this.cart.totalPrice);
+    let order = new Order(this.userId, shipping, this.cart, this.cart.totalPrice);
     let result = await this.orderService.placeOrder(order);
 
     this.router.navigate(['/order-success', result.key]);

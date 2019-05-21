@@ -48,49 +48,54 @@
         <ng-container *ngIf="user.address && user.name==id.displayName">
           <div class="form-row">
             <div class="form-group col-md-6">
-              <input type="text" #name="ngModel" name="firstname" [(ngModel)]="user.address.firstname" 
-              [(ngModel)]="shipping['firstname']" class="form-control">
+              <input type="text" name="firstname" #firstname
+              value='{{user.address.firstname}}'
+               class="form-control" disabled>
             </div>
+            <!-- [(ngModel)]="shipping['firstname']"  #name="ngModel" -->
             <!-- SURNAME -->
             <div class="form-group col-md-6">
-              <input #name="ngModel" name="surname" [(ngModel)]="user.address.surname" 
-              [(ngModel)]="shipping['surname']" type="text" class="form-control">
+              <input name="surname" #surname disabled
+              value='{{user.address.surname}}' type="text" class="form-control">
             </div>
           </div>
           <!-- ADDRESS 1 -->
           <div class="form-group">
             <label for="inputAddress">Adress</label>
-            <input #name="ngModel" name="address1" [(ngModel)]="user.address.address1"
-             [(ngModel)]="shipping['address1']" type="text" class="form-control">
+            <input name="address1" #address1 disabled
+            value='{{user.address.address1}}' type="text" class="form-control">
           </div>
           <!-- ADDRESS 2 -->
           <div class="form-group">
             <label for="inputAddress2">Address 2</label>
-            <input #name="ngModel" name="address2" [(ngModel)]="user.address.address2"
-             [(ngModel)]="shipping['address2']" type="text" class="form-control">
+            <input name="address2" #address2  disabled
+            value='{{user.address.address2}}' type="text" class="form-control">
           </div>
           <!-- CITY -->
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">City</label>
-              <input  #name="ngModel" name="city" [(ngModel)]="user.address.city" [(ngModel)]="shipping['city']" 
+              <input  name="city" #city disabled
+              value='{{user.address.city}}'
               type="text" class="form-control">
             </div>
             <!-- STATE -->
             <div class="form-group col-md-4">
               <label for="inputState">State</label>
-              <input #name="ngModel" name="state" [(ngModel)]="user.address.state" [(ngModel)]="shipping['state']"
+              <input name="state" #state disabled
+              value='{{user.address.state}}' 
                type="text" class="form-control" >
             </div>
             <!-- ZIP -->
             <div class="form-group col-md-2">
               <label for="inputZip">Zip</label>
-              <input #name="ngModel" name="zip" [(ngModel)]="user.address.zip" [(ngModel)]="shipping['zip']" 
+              <input name="zip" #zip disabled
+              value='{{user.address.zip}}'
               
               type="text" class="form-control">
             </div>
           </div>
-          <button class="btn btn-primary" (click)="placeOrderWithSavedAddress()">Place Order</button>
+          <button class="btn btn-primary" (click)="placeOrderWithSavedAddress(firstname.value,address1.value,city.value)">Place Order</button>
           <button class="btn btn-primary" routerLink="/my/profile" style="margin-left: 0.5em;">Edit Address</button>
         </ng-container>
       </ng-container>
