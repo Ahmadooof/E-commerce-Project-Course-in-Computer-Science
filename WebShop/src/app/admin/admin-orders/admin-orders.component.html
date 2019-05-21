@@ -13,7 +13,7 @@
   </thead> 
   <tbody>
     <tr *ngFor="let c of orders$ | async">
-      <td>{{ c.shipping.name }}</td>
+      <td>{{ c.shipping.firstname}}</td>
       <td>
        {{c.shipping.addressLine1}}
       </td>
@@ -35,12 +35,14 @@
       <td>
           <div class="list-group mb-4 shadow-sm">
             
-          <select>
-         
-        <option value="0" >In Progress</option>
+      <select class="custom-select"
+      [ngModel]="selectedStatus"
+      (ngModelChange)="statusChanged($event)">   
+        <option value="0" selected>In Progress</option>
         <option value="1">Processing</option>
         <option value="2">Completed</option>
       </select>
+
     </div>
       </td>
       <td>
