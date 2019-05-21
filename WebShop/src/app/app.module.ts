@@ -83,11 +83,6 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
         canActivate: [AuthGuard]
       },
       {
-        path: 'my/profile',
-        component: UserProfileComponent,
-        canActivate: [AuthGuard]
-      },
-      {
         path: 'my/orders',
         component: MyOrdersComponent,
         canActivate: [AuthGuard]
@@ -109,6 +104,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ShoppingCartService,
     FileLinkService,
     OrderService,
+    UserProfileComponent
   ],
   bootstrap: [AppComponent]
 })

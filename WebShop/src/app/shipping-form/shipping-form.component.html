@@ -1,36 +1,91 @@
-<form #f="ngForm">
-  <div class="form-group">
-    <label for="">Name</label>
-    <input #name="ngModel" name="name" [(ngModel)]="shipping['name']" type="text" class="form-control" placeholder="Name" required>
-    <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-      <div *ngIf="name.errors.required">Name is required.</div>
-      
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="">Address</label>
-    <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping['addressLine1']" type="text" class="form-control" placeholder="Line 1" required>
-    <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
-      <div *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
-    </div>
-  </div>
+<div class="card" style="padding: 2em;">
+  <form *ngIf="addressIsSaved" #f="ngForm">
+    <div class="form-group">
+      <label for="">Name</label>
+      <input #name="ngModel" name="name" [(ngModel)]="shipping['name']" type="text" class="form-control"
+        placeholder="Name" required>
+      <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+        <div *ngIf="name.errors.required">Name is required.</div>
 
-  <div class="form-group">
-
-    <label for=""></label>
-    <input #addressLine2="ngModel" [(ngModel)]="shipping['addressLine2']" name="addressLine2"  type="text" class="form-control" placeholder="Line 2" required>
-    <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid">
-      <div *ngIf="addressLine2.errors.required">Address Line 2 is required.</div>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
+    <div class="form-group">
+      <label for="">Address</label>
+      <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping['addressLine1']" type="text"
+        class="form-control" placeholder="Line 1" required>
+      <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
+        <div *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+
+      <label for=""></label>
+      <input #addressLine2="ngModel" [(ngModel)]="shipping['addressLine2']" name="addressLine2" type="text"
+        class="form-control" placeholder="Line 2" required>
+      <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid">
+        <div *ngIf="addressLine2.errors.required">Address Line 2 is required.</div>
+      </div>
+    </div>
+    <div class="form-group">
 
       <label for="">City</label>
-        <input #city="ngModel" [(ngModel)]="shipping['city']" type="text" name="city" class="form-control" placeholder="City" required>
-        <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
-          <div *ngIf="city.errors.required">City is required.</div>
-        </div>
+      <input #city="ngModel" [(ngModel)]="shipping['city']" type="text" name="city" class="form-control"
+        placeholder="City" required>
+      <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+        <div *ngIf="city.errors.required">City is required.</div>
       </div>
+    </div>
 
-      <button class="btn btn-primary" [disabled]="!f.valid" (click)="placeOrder()">Place Order</button>
-</form>
+    <button class="btn btn-primary" [disabled]="!f.valid" (click)="placeOrder()">Place Order</button>
+  </form>
+  <!-- FIRST NAME -->
+  <div *ngIf="!addressIsSaved && items$ | async; let users; else loading">
+    <!-- FIRST NAME -->
+    <form *ngFor="let user of users">
+      <!-- These two ng-containers is the magic that makes the user profile billing work... -->
+      <ng-container *ngIf="authService.user$ | async as id; else anonymousUser">
+        <ng-container *ngIf="user.address && user.name==id.displayName">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input disabled type="text" class="form-control" placeholder="{{ user.address.firstname }}">
+            </div>
+            <!-- SURNAME -->
+            <div class="form-group col-md-6">
+              <input disabled type="text" class="form-control" placeholder="{{ user.address.surname }}">
+            </div>
+          </div>
+          <!-- ADDRESS 1 -->
+          <div class="form-group">
+            <label for="inputAddress">Adress</label>
+            <input disabled type="text" class="form-control" placeholder="{{ user.address.address1 }}">
+          </div>
+          <!-- ADDRESS 2 -->
+          <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input disabled type="text" class="form-control" placeholder="{{ user.address.address2 }}">
+          </div>
+          <!-- CITY -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input disabled type="text" class="form-control" placeholder="{{ user.address.city }}">
+            </div>
+            <!-- STATE -->
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <input disabled type="text" class="form-control" placeholder="{{ user.address.state }}">
+            </div>
+            <!-- ZIP -->
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input disabled type="text" class="form-control" placeholder="{{ user.address.zip }}">
+            </div>
+          </div>
+          <button class="btn btn-primary" (click)="placeOrderWithSavedAddress()">Place Order</button>
+          <button class="btn btn-primary" routerLink="/my/profile" style="margin-left: 0.5em;">Edit Address</button>
+        </ng-container>
+      </ng-container>
+    </form>
+  </div>
+</div>

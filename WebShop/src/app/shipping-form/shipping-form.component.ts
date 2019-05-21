@@ -1,10 +1,13 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ShoppingCart } from '../models/shopping-cart';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { OrderService } from '../order.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { Order } from '../models/Order';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-shipping-form',
@@ -13,22 +16,42 @@ import { Order } from '../models/Order';
 })
 export class ShippingFormComponent implements OnInit, OnDestroy {
   @Input('cart') cart: ShoppingCart;
-  
+  @Input('uP') profile: UserProfileComponent;
+
   shipping = {};
+  // THIS ORDERADDRESS GIVES ERROR! // CANNOT USE THIS.USERPROFILE.ADDRESS.ETC. //
+  orderAddress = {
+    addressLine1: this.userProfile.address.address1,
+    addressLine2: this.userProfile.address.address2,
+    city: this.userProfile.address.city,
+    name: this.userProfile.address.surname
+  };
+  //// 
   userId: string;
   userSub: Subscription;
+
+  addressNeedsUpdate: boolean;
+  items: AngularFireList<any>;
+  items$: Observable<any[]>;
 
   constructor(
     private orderService: OrderService,
     private authService: AuthService,
-    private router: Router
-  ){}
+    private router: Router,
+    private db: AngularFireDatabase,
+    private userService: UserService, // Can probably be removed.
+    private userProfile: UserProfileComponent
+  ) { }
 
-  async ngOnInit(){
+  async ngOnInit() {
     this.userSub = this.authService.user$.subscribe(user => this.userId = user.uid);
+
+    //this.addressNeedsUpdate = true; // Probably not necassary.
+    this.items = this.db.list('users');
+    this.items$ = this.items.valueChanges();
   }
-  
-  ngOnDestroy(){
+
+  ngOnDestroy() {
     this.userSub.unsubscribe();
   }
 
@@ -36,6 +59,20 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     let order = new Order(this.userId, this.shipping, this.cart, this.cart.totalPrice);
     let result = await this.orderService.placeOrder(order);
 
+    this.router.navigate(['/order-success', result.key]);
+  }
+
+  // Virtually same as placeOrder() but with one minor tweak.
+  async placeOrderWithSavedAddress() {
+    this.shipping = this.userProfile.items;   
+    //TEST {
+      /*addressLine1: this.userProfile.address.address1,
+      addressLine2: this.userProfile.address.address2,
+      city: this.userProfile.address.city,
+      name: this.userProfile.address.surname*/
+    //}
+    let order = new Order(this.userId, this.orderAddress, this.cart, this.cart.totalPrice);
+    let result = await this.orderService.placeOrder(order);
     this.router.navigate(['/order-success', result.key]);
   }
 
