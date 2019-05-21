@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { OrderService } from '../order.service';
 import { ShoppingCartService } from '../shopping-cart.service';
+import { Order } from '../models/Order';
 
 @Component({
   selector: 'app-my-orders',
@@ -23,5 +24,10 @@ export class MyOrdersComponent implements OnInit {
   async ngOnInit() {
     this.cart$ = await this.cartService.getCart();
   }
+
+  isCompleted(){
+    return false;
+  }
+
 
 }

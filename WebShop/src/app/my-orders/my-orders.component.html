@@ -1,42 +1,51 @@
 <h1>My Orders</h1>
-<table class="table" *ngIf="cart$ | async as cart">
 
-  <thead>
-    <tr>
-      <th>Orders</th>
-      <th>Order Date</th>
-      <th>Product Name</th>
-      <th>Order Status</th>
-      <th>Total Price</th>
-
-    </tr>
-  </thead> 
-            <!-- <tr *ngFor="let item of order.items"> -->
-
-
-<tbody>
-    <tr *ngFor="let order of orders$ | async; let i = index">
-        <td>
-          order {{i+1}}  
+<div class="wrapper"*ngIf="cart$ | async as cart">
+  
+  <div class="orders" *ngFor="let order of orders$ | async;let i = index">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Orders</th>
+          <th>Order Date</th>
+          <th>Order Status</th>
+          <th>Total Price</th>
+        </tr>
+      </thead> 
+      <tbody>
+        <tr>
+          <td>
+            order {{i+1}}  
+          </td>
+          <td>
+            {{ order.datePlaced | date }}
+          </td>
+          <td>
+            {{order.status}}
         </td>
         <td>
-          {{ order.datePlaced | date }}
+          {{order.totalCost}} SEK
         </td>
-      <p *ngFor="let item of order.items;let itemIndex= index">
-        <td>
-        {{ item.product.title }}
-        </td>
-        <td>
-           x{{ item.quantity }}
-        </td>
-      </p>
-      <td>
-          {{item.status}}
-       </td>
-      <td>
-        {{order.totalCost}} SEK
-      </td>
-    </tr>
+        </tr>
+      </tbody>
+  </table>
 
-</tbody> 
-</table>
+  <div >
+  <div class="row" >
+      <div class="col-sm-6">
+        <div class="card" *ngFor="let item of order.items;">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.product.title }}</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary" *ngIf="order.status === 'Completed'">Go somewhere</a>
+          </div>
+        </div>
+      </div>  
+    </div>
+   
+  </div>
+  </div> <!--orders-->
+</div><!--wrapper-->
+
+
+
