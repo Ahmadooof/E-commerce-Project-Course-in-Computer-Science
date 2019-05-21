@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'app-order-success',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSuccessComponent implements OnInit {
 
-  constructor() { }
+  constructor(private shoppingcartService:ShoppingCartService) { }
 
   ngOnInit() {
+    this.shoppingcartService.clearCart();
   }
 
 }
