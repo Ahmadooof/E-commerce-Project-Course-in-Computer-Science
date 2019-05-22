@@ -12,18 +12,18 @@
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let order of orders$ | async" >
-      <td>{{ order.shipping.firstname}}</td>
+    <tr *ngFor="let c of orders$ | async">
+      <td>{{ c.shipping.name }}</td>
       <td>
-       {{order.shipping.addressLine1}}
+       {{c.shipping.addressLine1}}
       </td>
       <td>
-          {{order.shipping.city}}
+          {{c.shipping.city}}
       </td>
 
       
 
-      <p *ngFor="let item of order.items;">
+      <p *ngFor="let item of c.items;">
         <td>
         {{ item.product.title }}
         </td>
@@ -35,18 +35,16 @@
       <td>
           <div class="list-group mb-4 shadow-sm">
             
-      <select class="custom-select"
-      [ngModel]="selectedStatus"
-      (ngModelChange)="statusChanged($event)">   
-        <option value="0" selected>In Progress</option>
+          <select>
+         
+        <option value="0" >In Progress</option>
         <option value="1">Processing</option>
         <option value="2">Completed</option>
       </select>
-
     </div>
       </td>
       <td>
-        {{ order.totalCost }}
+        {{ c.totalCost }}
       </td>
 
    

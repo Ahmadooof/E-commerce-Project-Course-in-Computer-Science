@@ -4,14 +4,9 @@ export class Order {
     datePlaced: number;
     items: any[];
     total: number;
-    status: string;
     
-    constructor(public userId: string, 
-      public shipping: any,
-      public shoppingCart: ShoppingCart, 
-      public totalCost: number){
-
-        this.status = "In Progress";
+    constructor( public userId: string, public shipping: any,
+         shoppingCart: ShoppingCart, public totalCost: number ){
         this.datePlaced = new Date().getTime();
         this.totalCost;
         this.items = shoppingCart.items.map(i => {
@@ -26,6 +21,4 @@ export class Order {
             }
           })
     }
-
-  
 }

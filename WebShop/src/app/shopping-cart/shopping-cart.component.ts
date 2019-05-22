@@ -8,6 +8,7 @@ import {Product} from '../models/product';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
+  
   cart$;
 
   constructor(

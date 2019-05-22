@@ -1,4 +1,3 @@
-import { Order } from './models/Order';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 
@@ -22,10 +21,6 @@ export class OrderService {
     .equalTo(userId)).snapshotChanges().map(actions=>{
       return actions.map(action=>({key: action.key, ...action.payload.val() }));
     });
-  }
-
-  //TODO:
-  updateOrder(r){
   }
 
 }
