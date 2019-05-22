@@ -149,7 +149,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscribtion.unsubscribe();
+    try {
+      this.subscribtion.unsubscribe();
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'app-order-success',
@@ -7,11 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSuccessComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router, private shoppingcartService: ShoppingCartService) {
 
    }
 
   ngOnInit() {
+    this.shoppingcartService.clearCart();
+    
+    setTimeout(() => {
+      this.router.navigate(['/']);
+  }, 5000);  //5s
+
+
+
   }
 
 }
