@@ -62,10 +62,11 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   //   this.router.navigate(['/order-success', result.key]);
   // }
 
-  async placeOrderWithSavedAddress(name: string, address: string, city: string) {
+  async placeOrderWithSavedAddress(name: string, address1: string, address2: string, city: string) {
     let shipping = {
       name: name,
-      addressLine1 : address,
+      addressLine1 : address1,
+      addressLine2 : address2,
       city: city
     }
     
