@@ -9,11 +9,12 @@ import { OrderService } from 'src/app/order.service';
 export class AdminOrdersComponent {
 
   orders$;
+
   constructor(private orderService: OrderService) { 
-    //this.orders$ = orderService.getOrders();
     this.orders$ = orderService.getAll();
   }
 
+  //updates status on order by key
   statusChanged(value, key){
     switch (+value) {
       case 0:  
@@ -31,5 +32,22 @@ export class AdminOrdersComponent {
       default:
         break;
     }
+  }
+
+  //Updates html select drop down with the status of the course
+  selectStatus(status){
+    if(status.match("In Progress")){
+      return  0;
+    }    
+    else if(status.match("Processing")){
+      return 1;
+    }    
+    else if(status.match("Completed")){
+      return  2;
+    } else {
+      return  -1;
+    }
+
+
   }
 }

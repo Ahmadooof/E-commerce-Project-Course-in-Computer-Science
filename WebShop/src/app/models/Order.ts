@@ -17,7 +17,8 @@ export class Order {
                 price: i.price
               },
               quantity: i.quantity,
-              totalPrice: i.totalPrice
+              totalPrice: i.totalPrice,
+              status: 'In Progress'
             }
           })
     }
