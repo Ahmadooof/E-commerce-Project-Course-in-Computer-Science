@@ -13,4 +13,19 @@ export class AdminOrdersComponent {
     this.orders$ = orderService.getOrders();
   }
 
+  statusChanged(value){
+    switch (+value) {
+      case 0:  
+        console.log("In progress");
+        break;
+      case 1:
+          console.log("Processing");
+        break;
+      case 2:
+          console.log("Completed");
+        break;    
+      default:
+        break;
+    }
+  }
 }
