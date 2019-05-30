@@ -19,9 +19,6 @@
       </ngb-rating> 
     </div>
 
-    <!-- ADD TO CART FUNCTINALITY -->
-    <button (click)="addToCart()" class="btn btn-primary">Add to Cart</button>
-
     <!-- PRICE -->
     <div class="product-price-group" *ngIf="myProduct.dealOfDay=='false'">
       <small class="text-muted" >{{ myProduct.price | currency:'SEK ': 'symbol' }}</small>

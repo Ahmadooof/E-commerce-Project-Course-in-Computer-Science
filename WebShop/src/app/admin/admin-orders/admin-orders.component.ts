@@ -34,19 +34,18 @@ export class AdminOrdersComponent {
     }
   }
 
-  //Updates html select drop down with the status of the course
-  selectStatus(status){
-    if(status.match("In Progress")){
-      return  0;
-    }    
-    else if(status.match("Processing")){
-      return 1;
-    }    
-    else if(status.match("Completed")){
-      return  2;
-    } else {
-      return  -1;
-    }
+  // Updates html select drop down with the status of the course
+selectStatus(status) {
+  if (status === 'In Progress') {
+    return  0;
+  } else if (status === 'Processing') {
+    return 1;
+  } else if (status === 'Completed') {
+    return  2;
+  } else {
+    return  -1;
+  }
+
 
 
   }

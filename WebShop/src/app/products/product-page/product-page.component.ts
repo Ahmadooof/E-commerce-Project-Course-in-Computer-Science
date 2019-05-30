@@ -69,10 +69,6 @@ export class ProductPageComponent implements OnInit {
     this.productService.updateProduct(this.productID, this.myProduct);    
   }
 
-  addToCart() {
-    this.cartService.addToCart(this.product);
-  }
-
  //If readonly false, rate and block rating
   onClic(rate){    
     if(!this.readOnly){

@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ShoppingCartService {
+  currentPrice:number;
 
   constructor(
     private db: AngularFireDatabase
@@ -57,10 +58,27 @@ export class ShoppingCartService {
     return result.key;
   }
 
+  /**
+   * For some reason, if the course is not deal of the day, 
+   * else is never reached and currentPrice is undefined, 
+   * so I made a workaround in updateItem
+   * to keep the price working. 
+   * @param product 
+   */
+  private isDeal(product:Product){    
+    if(product.dealOfDay.valueOf()){
+      this.currentPrice = product.reducedPrice;
+    } else {
+      this.currentPrice = product.price;
+    } 
+  }
+
   private async updateItem(product: Product, change: number) {
-    let cartId = await this.getOrCreateCartId();
-    
+    let cartId = await this.getOrCreateCartId();    
     let item$ = this.getItem(cartId, product.key);
+
+    this.isDeal(product);
+    
     item$.valueChanges().take(1).subscribe(item => {
       let productQuantity = (product.quantity || 0) + change;
       let itemQuantity;
@@ -72,7 +90,7 @@ export class ShoppingCartService {
         item$.update({
         title: product.title,
         imageUrl: product.imageUrl,
-        price: product.price,
+        price: this.currentPrice||product.price,//Workaround
         quantity: itemQuantity + change });
       } else {
         itemQuantity = productQuantity;
@@ -82,7 +100,7 @@ export class ShoppingCartService {
         item$.update({
         title: product.title,
         imageUrl: product.imageUrl,
-        price: product.price,
+        price: this.currentPrice||product.price,
         quantity: productQuantity });
       }
     })
