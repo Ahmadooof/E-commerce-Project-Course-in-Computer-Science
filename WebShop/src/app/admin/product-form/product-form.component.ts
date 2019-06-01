@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/take';
-import { CategoryService } from '../../category.service';
-import { ProductService } from '../../product.service';
+import { CategoryService } from '../../services/category/category.service';
+import { ProductService } from '../../services/product/product.service';
 import { Observable } from 'rxjs';
-import { FileLinkService } from '../../file-link.service';
+import { FileLinkService } from '../../services/file-link/file-link.service';
 
 @Component({
   selector: 'app-product-form',

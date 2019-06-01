@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import 'rxjs/add/operator/take';
 import { Observable } from 'rxjs';
-import { ShoppingCart } from './models/shopping-cart';
-import { Product } from './models/product';
+import { ShoppingCart } from '../../models/shopping-cart';
+import { Product } from '../../models/product';
 import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
 
@@ -58,6 +58,7 @@ export class ShoppingCartService {
     return result.key;
   }
 
+  
   /**
    * For some reason, if the course is not deal of the day, 
    * else is never reached and currentPrice is undefined, 

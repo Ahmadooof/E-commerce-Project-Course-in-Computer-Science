@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { map } from 'rxjs/operators';
-import { Product } from './models/product';
+import { Product } from '../../models/product';
 
 // CRUD courses
 @Injectable({

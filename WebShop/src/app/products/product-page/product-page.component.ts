@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { ShoppingCartService } from 'src/app/shopping-cart.service';
-import { ProductService } from 'src/app/product.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+import { ProductService } from 'src/app/services/product/product.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { FileLinkService } from 'src/app/file-link.service';
+import { FileLinkService } from 'src/app/services/file-link/file-link.service';
 
 @Component({
   selector: 'app-product-page',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { OrderService } from '../order.service';
-import { ShoppingCartService } from '../shopping-cart.service';
-import { FileLinkService } from 'src/app/file-link.service';
+import { AuthService } from '../services/auth/auth.service';
+import { OrderService } from '../services/order/order.service';
+import { ShoppingCartService } from '../services/shopping-cart/shopping-cart.service';
+import { FileLinkService } from 'src/app/services/file-link/file-link.service';
 
 
 @Component({
