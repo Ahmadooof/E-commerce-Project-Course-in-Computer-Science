@@ -85,7 +85,7 @@ export class ProductFormComponent implements OnInit {
   pushLink() {
     this.downloadURL.subscribe(v => this.linkToFile = v);
 
-    this.fileLinkService.create(this.linkToFile, this.id);
+    this.fileLinkService.create(this.linkToFile || null, this.id);
   }
 
   update(){

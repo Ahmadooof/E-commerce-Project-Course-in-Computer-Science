@@ -37,7 +37,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ item.product.title }}</h5>
             <p class="card-text"></p>
-            <a href="#" class="btn btn-primary" *ngIf="order.status === 'Completed'">Get your course</a>
+            <a href="{{getLink(item.product.key)}}" *ngIf="item.product.key && order.status === 'Completed'">Download cloud material</a> 
           </div>
         </div>
       </div>  

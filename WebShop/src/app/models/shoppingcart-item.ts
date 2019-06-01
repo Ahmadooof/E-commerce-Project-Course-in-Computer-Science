@@ -7,7 +7,7 @@ export class ShoppingCartItem {
   price: number;
   title: string;
   imageUrl: string;
-
+  key2: string;  
   constructor(init?: Partial<ShoppingCartItem>) {
     Object.assign(this, init);
   }
