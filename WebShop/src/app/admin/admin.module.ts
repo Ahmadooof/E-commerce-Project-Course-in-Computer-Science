@@ -8,8 +8,8 @@ import { AdminCoursesComponent } from './admin-courses/admin-courses.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { ProductFormComponent } from './product-form/product-form.component';
-import { AdminAuthGuardService as AdminAuthGuard } from '../admin-auth-guard.service';
-import { AuthGuardService as AuthGuard } from '../auth-guard.service';
+import { AdminAuthGuardService as AdminAuthGuard } from '../services/admin-auth/admin-auth-guard.service';
+import { AuthGuardService as AuthGuard } from '../services/auth-guard/auth-guard.service';
 
 @NgModule({
   declarations: [

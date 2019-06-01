@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ShoppingCart } from '../models/shopping-cart';
 import { Subscription, Observable } from 'rxjs';
-import { OrderService } from '../order.service';
-import { AuthService } from '../auth.service';
+import { OrderService } from '../services/order/order.service';
+import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Order } from '../models/Order';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-shipping-form',
@@ -26,7 +26,7 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     city: this.userProfile.address.city,
     name:  this.userProfile.address.surname
   };
-  //// 
+
   userId: string;
   userSub: Subscription;
 
@@ -54,13 +54,6 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.userSub.unsubscribe();
   }
-
-  // async placeOrder() {
-  //   let order = new Order(this.userId, this.shipping, this.cart, this.cart.totalPrice);
-  //   let result = await this.orderService.placeOrder(order);
-
-  //   this.router.navigate(['/order-success', result.key]);
-  // }
 
   async placeOrderWithSavedAddress(name: string, address1: string, address2: string, city: string) {
     let shipping = {

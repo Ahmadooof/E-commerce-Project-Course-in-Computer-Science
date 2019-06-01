@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, wtfCreateScope } from '@angular/core';
-import { ProductService } from '../product.service';
-import { CategoryService } from '../category.service';
+import { ProductService } from '../services/product/product.service';
+import { CategoryService } from '../services/category/category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import 'rxjs/add/operator/switchMap';
-import { ShoppingCartService } from '../shopping-cart.service';
+import { ShoppingCartService } from '../services/shopping-cart/shopping-cart.service';
 import { Subscription } from 'rxjs';
 import { convertToR3QueryMetadata } from '@angular/core/src/render3/jit/directive';
 
