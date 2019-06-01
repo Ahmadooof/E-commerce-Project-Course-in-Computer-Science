@@ -58,8 +58,5 @@ export class UserProfileComponent implements OnInit {
     this.addressIsSaved = false;
   }
 
-  save(data) {
-    console.log(data);
-  }
 
 }

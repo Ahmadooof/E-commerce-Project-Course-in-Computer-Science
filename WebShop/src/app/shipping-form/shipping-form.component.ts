@@ -26,7 +26,7 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     city: this.userProfile.address.city,
     name:  this.userProfile.address.surname
   };
-  //// 
+
   userId: string;
   userSub: Subscription;
 
@@ -54,13 +54,6 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.userSub.unsubscribe();
   }
-
-  // async placeOrder() {
-  //   let order = new Order(this.userId, this.shipping, this.cart, this.cart.totalPrice);
-  //   let result = await this.orderService.placeOrder(order);
-
-  //   this.router.navigate(['/order-success', result.key]);
-  // }
 
   async placeOrderWithSavedAddress(name: string, address1: string, address2: string, city: string) {
     let shipping = {

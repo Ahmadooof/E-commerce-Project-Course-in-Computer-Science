@@ -70,6 +70,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       {path: 'shop', component: ShopComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
+      {path: 'about', component: HomeComponent},
       
       {path: 'order-success/:id', component: OrderSuccessComponent},
 
