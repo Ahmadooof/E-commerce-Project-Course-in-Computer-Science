@@ -26,7 +26,6 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: Product) {
-    console.log("++++++++++++++++++++",product);
     this.updateItem(product, 1);
   }
 
@@ -76,7 +75,6 @@ export class ShoppingCartService {
   }
 
   private async updateItem(product: Product, change: number) {
-    console.log(">>>>>>>>>>>>>>>>",product);
     let cartId = await this.getOrCreateCartId();    
     let item$ = this.getItem(cartId, product.key);
 
