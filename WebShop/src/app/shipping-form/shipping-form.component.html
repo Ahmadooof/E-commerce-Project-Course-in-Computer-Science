@@ -1,44 +1,4 @@
 <div class="card" style="padding: 2em;">
-  <!-- <form *ngIf="addressIsSaved" #f="ngForm">
-    <div class="form-group">
-      <label for="">skdfndslfjdsklj</label>
-      <input #name="ngModel" name="name" [(ngModel)]="shipping['name']" type="text" class="form-control"
-        placeholder="Name" required>
-      <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-        <div *ngIf="name.errors.required">Name is required.</div>
-
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="">Addresdfdsfdsdfsss</label>
-      <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping['addressLine1']" type="text"
-        class="form-control" placeholder="Line 1" required>
-      <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
-        <div *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-
-      <label for=""></label>
-      <input #addressLine2="ngModel" [(ngModel)]="shipping['addressLine2']" name="addressLine2" type="text"
-        class="form-control" placeholder="Line 2" required>
-      <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid">
-        <div *ngIf="addressLine2.errors.required">Address Line 2 is required.</div>
-      </div>
-    </div>
-    <div class="form-group">
-
-      <label for="">City</label>
-      <input #city="ngModel" [(ngModel)]="shipping['city']" type="text" name="city" class="form-control"
-        placeholder="City" required>
-      <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
-        <div *ngIf="city.errors.required">City is required.</div>
-      </div>
-    </div>
-
-    <button class="btn btn-primary" [disabled]="!f.valid" (click)="placeOrder()">Place Order</button>
-  </form> -->
   <!-- FIRST NAME -->
   <div *ngIf="!addressIsSaved && items$ | async; let users; else loading">
     <!-- FIRST NAME -->
@@ -96,9 +56,9 @@
             </div>
           </div>
           <button class="btn btn-primary" (click)="placeOrderWithSavedAddress(firstname.value,address1.value,address2.value,city.value)">Place Order</button>
-          <button class="btn btn-primary" routerLink="/my/profile" style="margin-left: 0.5em;">Edit Address</button>
         </ng-container>
       </ng-container>
     </form>
   </div>
+  <button class="btn btn-secondary" routerLink="/my/profile" style="margin-top: 1em;">Edit Address</button>      
 </div>
