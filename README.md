@@ -2,16 +2,18 @@
 This project is hosted in Firebase: https://shop-1c06c.firebaseapp.com/
 
 ## Test accounts
-Emails:
-- Customer/Owner of firebase: johnisyouraverageconsumer@gmail.com
-- Admin: johannaisyouraveragetutor@gmail.com
 
-Passoword (same for both): 
-- Long1234Password
+Instructions for installation and serving:
 
-## Local project
-To work in local: 
-- Clone
-- npm install
-- ng serve
-- Go to you localhost port to see the web page
+1. In your terminal navigate to the directory where you wish to put the files.
+2. Navigate to .../508project/Webshop
+3. Use the command "npm i" 
+4. When that is complete, use the command "ng serve"
+5. View the site on localhost:4200
+--------------------------------------
+
+Relevent Login Info to test admin functions:
+- email: johannaisyouraverageatutor@gmail.com
+- password: Long1234Password
+
+--------------------------------------
