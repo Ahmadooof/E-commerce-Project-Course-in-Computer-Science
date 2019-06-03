@@ -6,6 +6,7 @@ This project is hosted in Firebase: https://shop-1c06c.firebaseapp.com/
 Instructions for installation and serving:
 
 1. In your terminal navigate to the directory where you wish to put the files.
+2. Clone files from repository.
 2. Navigate to .../508project/Webshop
 3. Use the command "npm i" 
 4. When that is complete, use the command "ng serve"
