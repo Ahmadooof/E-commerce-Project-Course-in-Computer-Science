@@ -1,5 +1,8 @@
 # 508Project
-This project is hosted in Firebase: https://thewebshop-f3a8c.web.app/
+This project is hosted in Firebase:
+https://thewebshop-f3a8c.web.app/
+OR
+http://thewebshop-f3a8c.firebaseapp.com/
 
 ## Test accounts
 
